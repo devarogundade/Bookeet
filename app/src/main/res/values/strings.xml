@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">Bookeet</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
+        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
+        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
+        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
+        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
+        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
+        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
+        bibendum, vel congue leo egestas.\n\n
+        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
+        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
+        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
+        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
+        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
+        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
+        est.\n\n
+        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
+        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
+        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
+        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
+        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
+        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
+        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
+        convallis.\n\n
+        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
+        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
+        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
+        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
+        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
+        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
+    </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="start">Start</string>
+    <string name="get_started">Get Started</string>
+    <string name="bookeeping_and_more">Bookeeping and more</string>
+    <string name="send_code">Send Code</string>
+    <string name="login_or_sign_up">Login or Sign up</string>
+    <string name="enter_your_phone_number">Enter your phone number to login to your existing account or create a new account</string>
+    <string name="phone_number">Phone number</string>
+    <string name="_234">+234</string>
+    <string name="verify_code">Verify Code</string>
+    <string name="verification_code_sent">Verification Code Sent</string>
+    <string name="enter_the_6_digits_verification">Enter the 6 digits verification code sent to through SMS</string>
+    <string name="code">* * * * * *</string>
+    <string name="resend_code">Resend code</string>
+    <string name="linked_phone_number">Linked Phone number</string>
+    <string name="receive_sms_alerts_on_your_monthly_invoice">Receive sms alerts on your monthly invoice</string>
+    <string name="chat_with_a_representative">Chat with a representative</string>
+    <string name="reminder">Reminder</string>
+    <string name="profile_settings">Profile Settings</string>
+    <string name="edit_information_on_your_profile">Edit information on your profile</string>
+    <string name="view_and_update_reminder_list">View and update reminder list</string>
+    <string name="enquire_and_have_someone_reach_out_to_you">Enquire and have someone reach out to you</string>
+    <string name="home">Home</string>
+    <string name="scanner">Scanner</string>
+    <string name="inventory">Inventory</string>
+    <string name="profile">Profile</string>
+    <string name="manage_your_inventory">Manage your Inventory</string>
+    <string name="track_your_products">Track your products, get notified when you’re running out of stock.</string>
+    <string name="add_new_product">Add new product</string>
+    <string name="set_up_your_profile">Setup your profile</string>
+    <string name="tell_us_basic_information_about_you_to_serve_your_better">Tell us basic information about you to serve your better!</string>
+</resources>
