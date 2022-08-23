@@ -22,11 +22,22 @@
         tools:layout="@layout/fragment_phone" >
         <action
             android:id="@+id/action_phoneFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/phoneFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="team.pacify.bookeet.ui.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_transactionsFragment"
+            app:destination="@id/transactionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="team.pacify.bookeet.ui.transactions.TransactionsFragment"
+        android:label="fragment_transactions"
+        tools:layout="@layout/fragment_transactions" />
 </navigation>

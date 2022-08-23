@@ -75,4 +75,12 @@
     <string name="add_new_product">Add new product</string>
     <string name="set_up_your_profile">Setup your profile</string>
     <string name="tell_us_basic_information_about_you_to_serve_your_better">Tell us basic information about you to serve your better!</string>
+    <string name="search_transactions">Search transactions</string>
+    <string name="recent_transactions">Recent Transactions</string>
+    <string name="account_details">Account Details</string>
+    <string name="view_all">View all</string>
+    <string name="sales">Sales</string>
+    <string name="request_money">Request Money</string>
+    <string name="expenses">Expenses</string>
+    <string name="send_money">Send Money</string>
 </resources>

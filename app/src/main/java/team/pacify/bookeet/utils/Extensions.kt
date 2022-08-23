@@ -1,13 +1,16 @@
 package team.pacify.bookeet.utils
 
 import android.app.Dialog
+import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import team.pacify.bookeet.models.Sale
 import java.text.DecimalFormat
+import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import kotlin.math.floor
@@ -95,5 +98,15 @@ object Extensions {
         })
     }
 
+    fun List<Sale>.groupByDay(): List<List<Sale>> {
+        return groupBy {
+            val calender = Calendar.getInstance()
+            calender.time = it.soldOn
+
+            "${calender.get(Calendar.DAY_OF_YEAR)} ${calender.get(Calendar.YEAR)}"
+        }.map {
+            it.value
+        }
+    }
 
 }
