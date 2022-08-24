@@ -3,9 +3,9 @@ package team.pacify.bookeet.data.dao
 import team.pacify.bookeet.data.models.inventory.Product
 
 interface ProductDao {
-    fun addProduct(product: Product)
-    fun deleteProduct(product: Product)
-    fun updateProduct(Product: Product) : Product
-    fun getProduct(ProductID: String) : Product
-    fun getAllProduct(userID: String) : Product
+    suspend fun addProduct(product: Product)
+    suspend fun deleteProduct(product: Product)
+    suspend fun updateProduct(product: Product) : Product
+    suspend fun getProduct(productId: String) : Product?
+    suspend fun getAllProductForUser(userId: String) : List<Product>
 }
