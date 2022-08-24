@@ -1,4 +1,4 @@
-package team.pacify.bookeet.models
+package team.pacify.bookeet.data.models.finance
 
 import java.util.*
 

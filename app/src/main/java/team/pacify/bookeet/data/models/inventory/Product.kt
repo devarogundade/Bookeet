@@ -1,9 +1,10 @@
-package team.pacify.bookeet.models
+package team.pacify.bookeet.data.models.inventory
 
+import com.google.firebase.firestore.FieldValue
 import java.util.*
 
 data class Product(
-    val id: String = "",
+    var id: String = "",
     val userId: String = "",
     val name: String = "",
     val price: Double = -1.0,
