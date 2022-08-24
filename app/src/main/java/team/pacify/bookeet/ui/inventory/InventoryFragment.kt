@@ -13,8 +13,8 @@ import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import team.pacify.bookeet.R
 import team.pacify.bookeet.adapters.ItemsAdapter
+import team.pacify.bookeet.data.models.finance.Sale
 import team.pacify.bookeet.databinding.FragmentInventoryBinding
-import team.pacify.bookeet.models.Sale
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
 

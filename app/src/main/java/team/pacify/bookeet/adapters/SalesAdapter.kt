@@ -1,13 +1,15 @@
 package team.pacify.bookeet.adapters
 
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import org.ocpsoft.prettytime.PrettyTime
 import team.pacify.bookeet.R
+import team.pacify.bookeet.data.models.finance.Sale
 import team.pacify.bookeet.databinding.SaleItemBinding
-import team.pacify.bookeet.models.Sale
 
 class SalesAdapter : RecyclerView.Adapter<SalesAdapter.SalesViewHolder>() {
 

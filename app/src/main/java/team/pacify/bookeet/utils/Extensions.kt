@@ -1,14 +1,13 @@
 package team.pacify.bookeet.utils
 
 import android.app.Dialog
-import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import team.pacify.bookeet.models.Sale
+import team.pacify.bookeet.data.models.finance.Sale
 import java.text.DecimalFormat
 import java.util.*
 import java.util.regex.Matcher

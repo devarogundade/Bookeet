@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import team.pacify.bookeet.R
+import team.pacify.bookeet.data.models.finance.Sale
 import team.pacify.bookeet.databinding.TransactionItemBinding
-import team.pacify.bookeet.models.Sale
 import java.text.SimpleDateFormat
 
 class TransactionsAdapter : RecyclerView.Adapter<TransactionsAdapter.TransactionsViewHolder>() {

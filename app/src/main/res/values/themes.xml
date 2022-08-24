@@ -4,7 +4,7 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@drawable/window_background</item>
     </style>
 
     <!-- TabTextAppearance -->

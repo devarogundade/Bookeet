@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import org.ocpsoft.prettytime.PrettyTime
 import team.pacify.bookeet.R
+import team.pacify.bookeet.data.models.finance.Sale
 import team.pacify.bookeet.databinding.ItemItemBinding
-import team.pacify.bookeet.models.Sale
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>() {
 
