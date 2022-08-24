@@ -30,13 +30,16 @@
         android:id="@+id/mainFragment"
         android:name="team.pacify.bookeet.ui.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_transactionsFragment"
             app:destination="@id/transactionsFragment" />
         <action
             android:id="@+id/action_mainFragment_to_baseAddFragment"
             app:destination="@id/baseAddFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_bookKeepingFragment"
+            app:destination="@id/bookKeepingFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionsFragment"
@@ -48,4 +51,9 @@
         android:name="team.pacify.bookeet.ui.additem.BaseAddFragment"
         android:label="fragment_base_add"
         tools:layout="@layout/fragment_base_add" />
+    <fragment
+        android:id="@+id/bookKeepingFragment"
+        android:name="team.pacify.bookeet.ui.bookkeeping.BookKeepingFragment"
+        android:label="fragment_book_keeping"
+        tools:layout="@layout/fragment_book_keeping" />
 </navigation>

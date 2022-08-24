@@ -1,9 +1,11 @@
 package team.pacify.bookeet.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,7 +14,6 @@ import team.pacify.bookeet.R
 import team.pacify.bookeet.adapters.SalesAdapter
 import team.pacify.bookeet.databinding.FragmentHomeBinding
 import team.pacify.bookeet.utils.Resource
-
 
 class HomeFragment : Fragment() {
 
@@ -44,6 +45,18 @@ class HomeFragment : Fragment() {
             sales.apply {
                 adapter = salesAdapter
                 layoutManager = LinearLayoutManager(requireContext())
+            }
+            materialToolbar.setNavigationOnClickListener {
+                binding.root.openDrawer(GravityCompat.START)
+            }
+            drawer.setNavigationItemSelectedListener { item ->
+                Log.d("TAG", "onViewCreated: $item")
+
+                when (item.itemId) {
+                    R.id.bookKeeping -> findNavController().navigate(R.id.action_mainFragment_to_bookKeepingFragment)
+                }
+
+                true
             }
         }
 

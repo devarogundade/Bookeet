@@ -5,6 +5,7 @@
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:windowBackground">@drawable/window_background</item>
+        <item name="fontFamily">@font/lato</item>
     </style>
 
     <!-- TabTextAppearance -->
@@ -78,4 +79,13 @@
     </style>
 
     <style name="Theme.Bookeet" parent="Base.Theme.Bookeet" />
+
+    <style name="Theme.Bookeet.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Bookeet.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Bookeet.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
