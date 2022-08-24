@@ -20,6 +20,7 @@
         android:id="@+id/cardView2"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:backgroundTint="@color/light_amber"
         app:cardCornerRadius="25dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,7 +32,12 @@
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_gravity="center"
-            android:contentDescription="@string/app_name" />
+            android:background="@drawable/amber_button_round"
+            android:contentDescription="@string/app_name"
+            android:padding="4dp"
+            android:rotation="90"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:tint="@color/white" />
 
     </androidx.cardview.widget.CardView>
 

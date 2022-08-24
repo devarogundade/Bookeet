@@ -34,10 +34,18 @@
         <action
             android:id="@+id/action_mainFragment_to_transactionsFragment"
             app:destination="@id/transactionsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_baseAddFragment"
+            app:destination="@id/baseAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionsFragment"
         android:name="team.pacify.bookeet.ui.transactions.TransactionsFragment"
         android:label="fragment_transactions"
         tools:layout="@layout/fragment_transactions" />
+    <fragment
+        android:id="@+id/baseAddFragment"
+        android:name="team.pacify.bookeet.ui.additem.BaseAddFragment"
+        android:label="fragment_base_add"
+        tools:layout="@layout/fragment_base_add" />
 </navigation>

@@ -7,6 +7,15 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
+    <!-- TabTextAppearance -->
+    <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/lato</item>
+        <item name="android:fontFamily">@font/lato</item>
+    </style>
+
     <!-- Custom bottom navigation -->
     <style name="BottomNavigationViewText" parent="TextAppearance.AppCompat">
         <item name="android:textSize">14sp</item>

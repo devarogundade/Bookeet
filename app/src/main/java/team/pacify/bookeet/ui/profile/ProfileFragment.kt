@@ -31,14 +31,11 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        val user = firebaseAuth.currentUser ?: return
-        viewModel.getUser(user.uid)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val user = firebaseAuth.currentUser
+        viewModel.getUser(user?.uid)
 
         unsetProfile = UnsetProfile(binding.unsetProfile) {
 
@@ -48,11 +45,14 @@ class ProfileFragment : Fragment() {
             when (resource) {
                 is Resource.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.setProfile.visibility = View.GONE
+                    unsetProfile.hide()
                 }
                 is Resource.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    unsetProfile.show()
                     Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT).show()
+                    binding.progressBar.visibility = View.GONE
+                    binding.setProfile.visibility = View.GONE
+                    unsetProfile.show()
                 }
                 else -> {
                     if (resource.data == null) {
@@ -61,9 +61,9 @@ class ProfileFragment : Fragment() {
                         return@observe
                     }
 
+                    binding.progressBar.visibility = View.GONE
                     binding.setProfile.visibility = View.VISIBLE
                     unsetProfile.hide()
-                    binding.progressBar.visibility = View.GONE
                 }
             }
         }

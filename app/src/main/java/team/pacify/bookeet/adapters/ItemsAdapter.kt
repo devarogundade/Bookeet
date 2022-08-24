@@ -1,24 +1,26 @@
 package team.pacify.bookeet.adapters
 
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import org.ocpsoft.prettytime.PrettyTime
 import team.pacify.bookeet.R
-import team.pacify.bookeet.databinding.SaleItemBinding
+import team.pacify.bookeet.databinding.ItemItemBinding
 import team.pacify.bookeet.models.Sale
 
-class SalesAdapter : RecyclerView.Adapter<SalesAdapter.SalesViewHolder>() {
+class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SalesViewHolder {
-        return SalesViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
+        return ItemsViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.sale_item, parent, false)
+                .inflate(R.layout.item_item, parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: SalesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
         holder.bind(diffResult.currentList[position])
     }
 
@@ -46,13 +48,13 @@ class SalesAdapter : RecyclerView.Adapter<SalesAdapter.SalesViewHolder>() {
         diffResult.submitList(sales)
     }
 
-    inner class SalesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val prettyTime = PrettyTime()
-        val binding = SaleItemBinding.bind(itemView)
+        val binding = ItemItemBinding.bind(itemView)
 
         fun bind(sale: Sale) {
             binding.apply {
-                date.text = prettyTime.format(sale.soldOn)
+
             }
         }
     }
