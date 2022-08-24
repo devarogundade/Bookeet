@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import team.pacify.bookeet.data.models.inventory.Product
 import team.pacify.bookeet.domain.repository.FirebaseStoreRepository
@@ -20,11 +21,21 @@ class InventoryViewModel
     private val _products = MutableLiveData<Resource<List<Product>>>()
     val products: LiveData<Resource<List<Product>>> = _products
 
-    fun getProducts(userId: String) {
+    fun getProducts(userId: String?) {
         viewModelScope.launch {
             _products.postValue(Resource.Loading())
-            /// to stuff
+            delay(1000)
             _products.postValue(Resource.Success(emptyList()))
+            delay(1000)
+            _products.postValue(Resource.Loading())
+            delay(1000)
+            _products.postValue(
+                Resource.Success(
+                    listOf(
+                        Product()
+                    )
+                )
+            )
         }
     }
 
