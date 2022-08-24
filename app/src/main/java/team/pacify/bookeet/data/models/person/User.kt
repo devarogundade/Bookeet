@@ -1,4 +1,4 @@
-package team.pacify.bookeet.models
+package team.pacify.bookeet.data.models.person
 
 data class User(
     val id: String = "",

@@ -1,10 +1,10 @@
-package team.pacify.bookeet.repository
+package team.pacify.bookeet.domain.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
-import team.pacify.bookeet.models.Product
-import team.pacify.bookeet.models.Sale
-import team.pacify.bookeet.models.User
+import team.pacify.bookeet.data.models.inventory.Product
+import team.pacify.bookeet.data.models.finance.Sale
+import team.pacify.bookeet.data.models.person.User
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
 

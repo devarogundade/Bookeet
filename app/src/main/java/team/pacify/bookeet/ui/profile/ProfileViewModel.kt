@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import team.pacify.bookeet.models.User
-import team.pacify.bookeet.repository.FirebaseStoreRepository
+import team.pacify.bookeet.data.models.person.User
+import team.pacify.bookeet.domain.repository.FirebaseStoreRepository
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
 
