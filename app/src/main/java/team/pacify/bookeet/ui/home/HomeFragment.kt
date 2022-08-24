@@ -13,7 +13,6 @@ import team.pacify.bookeet.adapters.SalesAdapter
 import team.pacify.bookeet.databinding.FragmentHomeBinding
 import team.pacify.bookeet.utils.Resource
 
-
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
