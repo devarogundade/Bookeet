@@ -4,22 +4,27 @@
     tools:showIn="navigation_view">
     <item
         android:id="@+id/invoice"
+        android:checkable="false"
         android:icon="@drawable/ic_invoice"
         android:title="@string/invoice" />
     <item
         android:id="@+id/bookKeeping"
+        android:checkable="false"
         android:icon="@drawable/ic_safe"
         android:title="@string/bookkeeping" />
     <item
         android:id="@+id/reminder"
+        android:checkable="false"
         android:icon="@drawable/ic_notification"
         android:title="@string/reminder" />
     <item
         android:id="@+id/settings"
+        android:checkable="false"
         android:icon="@drawable/ic_settings"
         android:title="@string/settings" />
     <item
         android:id="@+id/signOut"
+        android:checkable="false"
         android:icon="@drawable/ic_logout"
         android:title="@string/sign_out" />
 </menu>

@@ -3,12 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/amber_button_round.xml" value="0.1995" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/error_button_10.xml" value="0.303" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/green_button_10.xml" value="0.303" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.284" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/ic_in.xml" value="0.303" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/ic_out.xml" value="0.303" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/input.xml" value="0.284" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/input_10.xml" value="0.1995" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/light_blue_button_round.xml" value="0.1995" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/primary_button.xml" value="0.284" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/primary_button_10.xml" value="0.303" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/drawable/primary_button_round.xml" value="0.284" />
@@ -28,6 +31,9 @@
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_book_keeping.xml" value="0.271483539974348" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_cashbook.xml" value="0.2830269345874305" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_create_invoice.xml" value="0.2830269345874305" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_create_invoice_step_one.xml" value="0.2830269345874305" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_create_invoice_step_one_fragement.xml" value="0.2830269345874305" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_create_invoice_step_two.xml" value="0.271483539974348" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_debts.xml" value="0.2830269345874305" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_first.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_gallery.xml" value="0.13766566908935443" />
@@ -38,13 +44,21 @@
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_on_board.xml" value="0.2830269345874305" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_phone.xml" value="0.2830269345874305" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_profile.xml" value="0.2830269345874305" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_request_money.xml" value="0.2830269345874305" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_send_money.xml" value="0.2830269345874305" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_slideshow.xml" value="0.13766566908935443" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_transactions.xml" value="0.2830269345874305" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/fragment_verify.xml" value="0.3307291666666667" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/invoice_item.xml" value="0.2821718683197948" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/item_autocomplete_layout.xml" value="0.25859375" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/nav_header_main.xml" value="0.27944280287040946" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/onboard_item.xml" value="0.2821718683197948" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/request_item.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/unset_profile.xml" value="0.2830269345874305" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/layout/verification_code_dialog.xml" value="0.2830269345874305" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/menu/activity_main_drawer.xml" value="0.2830269345874305" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/menu/bottom_nav.xml" value="0.2830269345874305" />
+        <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/menu/drawer_menu.xml" value="0.2830269345874305" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/menu/main_activity2.xml" value="0.2830269345874305" />
         <entry key="..\:/Users/Arogundade Ibrahim/AndroidStudioProjects/Bookeet/app/src/main/res/menu/menu_main.xml" value="0.2830269345874305" />
       </map>

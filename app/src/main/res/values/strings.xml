@@ -132,4 +132,21 @@
     <string name="date">Date *</string>
     <string name="invoice_number">Invoice number *</string>
     <string name="item_name">Item name</string>
+    <string name="payment_method">Payment method</string>
+    <string name="cash">Cash</string>
+    <string name="cheque">Cheque</string>
+    <string name="bank_transfer">Bank transfer</string>
+    <string name="create_new_invoice">Create new invoice</string>
+    <string name="create_invoice">Create invoice</string>
+    <string name="amount_received">Amount received *</string>
+    <string name="you_have_no_invoice">You have no invoice</string>
+    <string name="create_new_request">Create New Request</string>
+    <string name="select_contact_to_request">Select contact to request</string>
+    <string name="sent_requests">Sent requests</string>
+    <string name="remind">Remind</string>
+    <string name="narration">Narration</string>
+    <string name="bank">Bank *</string>
+    <string name="account_number">Account number *</string>
+    <string name="required_field">Required field</string>
+    <string name="min_amount_send">You can send less than ₦100</string>
 </resources>

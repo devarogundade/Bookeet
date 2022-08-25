@@ -8,7 +8,7 @@
         android:id="@+id/onBoardFragment"
         android:name="team.pacify.bookeet.ui.onboard.OnBoardFragment"
         android:label="fragment_on_board"
-        tools:layout="@layout/fragment_on_board" >
+        tools:layout="@layout/fragment_on_board">
         <action
             android:id="@+id/action_onBoardFragment_to_phoneFragment"
             app:destination="@id/phoneFragment"
@@ -19,7 +19,7 @@
         android:id="@+id/phoneFragment"
         android:name="team.pacify.bookeet.ui.auth.PhoneFragment"
         android:label="fragment_phone"
-        tools:layout="@layout/fragment_phone" >
+        tools:layout="@layout/fragment_phone">
         <action
             android:id="@+id/action_phoneFragment_to_mainFragment"
             app:destination="@id/mainFragment"
@@ -39,7 +39,24 @@
             app:destination="@id/baseAddFragment" />
         <action
             android:id="@+id/action_mainFragment_to_bookKeepingFragment"
-            app:destination="@id/bookKeepingFragment" />
+            app:destination="@id/bookKeepingFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_invoiceFragment"
+            app:destination="@id/invoiceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_requestMoneyFragment"
+            app:destination="@id/requestMoneyFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_sendMoneyFragment"
+            app:destination="@id/sendMoneyFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionsFragment"
@@ -48,12 +65,36 @@
         tools:layout="@layout/fragment_transactions" />
     <fragment
         android:id="@+id/baseAddFragment"
-        android:name="team.pacify.bookeet.ui.additem.BaseAddFragment"
+        android:name="team.pacify.bookeet.ui.additem.AddItemFragment"
         android:label="fragment_base_add"
-        tools:layout="@layout/fragment_base_add" />
+        tools:layout="@layout/fragment_add_item" />
     <fragment
         android:id="@+id/bookKeepingFragment"
         android:name="team.pacify.bookeet.ui.bookkeeping.BookKeepingFragment"
         android:label="fragment_book_keeping"
         tools:layout="@layout/fragment_book_keeping" />
+    <fragment
+        android:id="@+id/invoiceFragment"
+        android:name="team.pacify.bookeet.ui.invoice.InvoiceFragment"
+        android:label="fragment_invoice"
+        tools:layout="@layout/fragment_invoice">
+        <action
+            android:id="@+id/action_invoiceFragment_to_createInvoiceFragment"
+            app:destination="@id/createInvoiceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createInvoiceFragment"
+        android:name="team.pacify.bookeet.ui.createinvoice.CreateInvoiceFragment"
+        android:label="fragment_create_invoice"
+        tools:layout="@layout/fragment_create_invoice" />
+    <fragment
+        android:id="@+id/requestMoneyFragment"
+        android:name="team.pacify.bookeet.ui.money.request.RequestMoneyFragment"
+        android:label="fragment_request_money"
+        tools:layout="@layout/fragment_request_money" />
+    <fragment
+        android:id="@+id/sendMoneyFragment"
+        android:name="team.pacify.bookeet.ui.money.send.SendMoneyFragment"
+        android:label="fragment_send_money"
+        tools:layout="@layout/fragment_send_money" />
 </navigation>

@@ -1,7 +1,6 @@
 package team.pacify.bookeet.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,13 +49,18 @@ class HomeFragment : Fragment() {
                 binding.root.openDrawer(GravityCompat.START)
             }
             drawer.setNavigationItemSelectedListener { item ->
-                Log.d("TAG", "onViewCreated: $item")
-
                 when (item.itemId) {
+                    R.id.invoice -> findNavController().navigate(R.id.action_mainFragment_to_invoiceFragment)
                     R.id.bookKeeping -> findNavController().navigate(R.id.action_mainFragment_to_bookKeepingFragment)
                 }
-
+                root.closeDrawer(GravityCompat.START)
                 true
+            }
+            requestMoney.setOnClickListener {
+                findNavController().navigate(R.id.action_mainFragment_to_requestMoneyFragment)
+            }
+            sendMoney.setOnClickListener {
+                findNavController().navigate(R.id.action_mainFragment_to_sendMoneyFragment)
             }
         }
 

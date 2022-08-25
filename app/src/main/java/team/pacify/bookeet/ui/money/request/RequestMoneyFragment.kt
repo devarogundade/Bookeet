@@ -1,54 +1,61 @@
-package team.pacify.bookeet.ui.invoice
+package team.pacify.bookeet.ui.money.request
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import team.pacify.bookeet.R
-import team.pacify.bookeet.adapters.InvoiceAdapter
-import team.pacify.bookeet.databinding.FragmentInvoiceBinding
+import team.pacify.bookeet.adapters.RequestAdapter
+import team.pacify.bookeet.databinding.FragmentRequestMoneyBinding
+import team.pacify.bookeet.utils.RecyclerViewDivider
 import team.pacify.bookeet.utils.Resource
 
-class InvoiceFragment : Fragment() {
+class RequestMoneyFragment : Fragment() {
 
-    private val viewModel: InvoiceViewModel by viewModels()
-    private lateinit var binding: FragmentInvoiceBinding
-    private val invoiceAdapter = InvoiceAdapter()
+    private lateinit var binding: FragmentRequestMoneyBinding
+    private val requestAdapter = RequestAdapter()
+    private val viewModel: RequestMoneyViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentInvoiceBinding.inflate(inflater)
+        binding = FragmentRequestMoneyBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getInvoices()
+        viewModel.getRequests()
 
         binding.apply {
             materialToolbar2.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
 
-            createInvoice.setOnClickListener {
-                findNavController().navigate(R.id.action_invoiceFragment_to_createInvoiceFragment)
-            }
-
-            invoices.apply {
-                adapter = invoiceAdapter
+            requests.apply {
+                adapter = requestAdapter
                 layoutManager = LinearLayoutManager(requireContext())
+                addItemDecoration(
+                    RecyclerViewDivider(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.light_gray
+                        ),
+                        height = 1
+                    )
+                )
             }
         }
 
-        viewModel.invoices.observe(viewLifecycleOwner) { resource ->
+        viewModel.requests.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -66,7 +73,7 @@ class InvoiceFragment : Fragment() {
                         binding.empty.visibility = View.VISIBLE
                         return@observe
                     }
-                    invoiceAdapter.setSales(resource.data)
+                    requestAdapter.setSales(resource.data)
                     binding.progressBar.visibility = View.GONE
                 }
             }

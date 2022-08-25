@@ -20,6 +20,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/serviceNameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxBackgroundColor="@color/light_gray"
@@ -29,6 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/serviceName"
                     style="@style/TextStyle16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -42,6 +44,7 @@
                 android:layout_height="30dp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/serviceChargeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -53,6 +56,7 @@
                 app:startIconDrawable="@drawable/ic_naira">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/serviceCharge"
                     style="@style/TextStyle16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -68,6 +72,7 @@
                 android:layout_height="30dp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/unitLayout"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,6 +83,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <AutoCompleteTextView
+                    android:id="@+id/units"
                     style="@style/TextStyle16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -20,6 +20,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/productNameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxBackgroundColor="@color/light_gray"
@@ -29,6 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/productName"
                     style="@style/TextStyle16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -47,6 +49,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/costPriceLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -58,6 +61,7 @@
                     app:startIconDrawable="@drawable/ic_naira">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/costPrice"
                         style="@style/TextStyle16"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -73,6 +77,7 @@
                     android:layout_height="match_parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/sellingPriceLayput"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -84,6 +89,7 @@
                     app:startIconDrawable="@drawable/ic_naira">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sellingPrice"
                         style="@style/TextStyle16"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -106,6 +112,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/quantityLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -116,6 +123,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/quantity"
                         style="@style/TextStyle16"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -159,6 +167,7 @@
                 android:layout_height="30dp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/unitLayout"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -169,6 +178,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <AutoCompleteTextView
+                    android:id="@+id/units"
                     style="@style/TextStyle16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
