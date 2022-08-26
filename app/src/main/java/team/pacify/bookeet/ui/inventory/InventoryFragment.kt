@@ -15,6 +15,7 @@ import team.pacify.bookeet.R
 import team.pacify.bookeet.adapters.ItemsAdapter
 import team.pacify.bookeet.data.models.finance.Sale
 import team.pacify.bookeet.databinding.FragmentInventoryBinding
+import team.pacify.bookeet.ui.qrcode.generate.GenerateQrCodeFragment
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
 
@@ -27,7 +28,11 @@ class InventoryFragment : Fragment() {
     private lateinit var binding: FragmentInventoryBinding
     private lateinit var emptyInventory: EmptyInventory
     private val viewModel: InventoryViewModel by viewModels()
-    private val itemsAdapter = ItemsAdapter()
+    private val itemsAdapter = ItemsAdapter({ item ->
+        GenerateQrCodeFragment().show(childFragmentManager, "childFragmentManager")
+    }, { item ->
+        findNavController().navigate(R.id.action_mainFragment_to_editItemFragment)
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

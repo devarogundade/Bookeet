@@ -6,13 +6,17 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import team.pacify.bookeet.R
 import team.pacify.bookeet.databinding.FragmentAddProductBinding
 import team.pacify.bookeet.pager.PagerFragment
 import team.pacify.bookeet.ui.additem.AddItemViewModel
+import team.pacify.bookeet.utils.CounterHandler
 import team.pacify.bookeet.utils.Extensions.validateInput
+import team.pacify.bookeet.utils.UIConstants
+import team.pacify.bookeet.utils.UIConstants.ItemUnits
 
 class AddProductFragment : PagerFragment() {
 
@@ -24,6 +28,8 @@ class AddProductFragment : PagerFragment() {
     private var isSellingPrice = false
     private var isQuantity = false
     private var isUnit = false
+
+    private lateinit var counterHandler: CounterHandler
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,11 +43,57 @@ class AddProductFragment : PagerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpValidators()
+        counterHandler = CounterHandler.Builder()
+            .listener(counterListener)
+            .incrementalView(binding.increment)
+            .decrementalView(binding.decrement)
+            .minRange(UIConstants.MIN_ITEM_IN_STORE)
+            .maxRange(UIConstants.MAX_ITEM_IN_STORE)
+            .startNumber(0)
+            .build()
+
+        val unitsAdapter = ArrayAdapter(
+            requireContext(),
+            R.layout.item_autocomplete_layout,
+            ItemUnits
+        )
 
         binding.apply {
+            quantity.apply {
+                setText("0")
+                addTextChangedListener(quantityWatcher)
+            }
 
+            binding.units.setAdapter(unitsAdapter)
         }
 
+    }
+
+    private val quantityWatcher = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            val quantity = binding.quantity.text.toString().trim()
+
+            if (quantity.isNotEmpty()) {
+                counterHandler.updateCounter(quantity.toInt())
+                return
+            }
+
+            counterHandler.updateCounter(0)
+        }
+
+        override fun afterTextChanged(p0: Editable?) = Unit
+    }
+
+    private val counterListener = object : CounterHandler.CounterListener {
+        override fun onIncrement(view: View?, number: Int) {
+            binding.quantity.setText(number.toString())
+        }
+
+        override fun onDecrement(view: View?, number: Int) {
+            binding.quantity.setText(number.toString())
+        }
     }
 
     override fun onClick() {

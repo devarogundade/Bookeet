@@ -149,4 +149,17 @@
     <string name="account_number">Account number *</string>
     <string name="required_field">Required field</string>
     <string name="min_amount_send">You can send less than ₦100</string>
+    <string name="account_name">Account name *</string>
+    <string name="bvn">Bvn *</string>
+    <string name="password">Password *</string>
+    <string name="email_address">Email address *</string>
+    <string name="update_profile">Update profile</string>
+    <string name="pin">Pin *</string>
+    <string name="edit_item">Edit Item</string>
+    <string name="save_changes">Save changes</string>
+    <string name="min_name">Your name is too short</string>
+    <string name="sold">Sold</string>
+    <string name="attach_customer">Attach customer</string>
+    <string name="_1">1</string>
+    <string name="save_qr_code">Save Qrcode</string>
 </resources>

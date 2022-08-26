@@ -130,6 +130,7 @@
                         android:gravity="center"
                         android:hint="@string/quantity"
                         android:imeOptions="actionNext"
+                        android:inputType="number"
                         android:textColor="@color/text_title" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -141,9 +142,11 @@
                     android:gravity="center">
 
                     <ImageView
+                        android:id="@+id/increment"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:background="@drawable/primary_button_round_stroke"
+                        android:contentDescription="@string/app_name"
                         android:padding="10dp"
                         android:src="@drawable/ic_baseline_add_24" />
 
@@ -152,9 +155,11 @@
                         android:layout_height="match_parent" />
 
                     <ImageView
+                        android:id="@+id/decrement"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:background="@drawable/primary_button_round_stroke"
+                        android:contentDescription="@string/app_name"
                         android:padding="10dp"
                         android:src="@drawable/ic_baseline_horizontal_rule_24" />
 

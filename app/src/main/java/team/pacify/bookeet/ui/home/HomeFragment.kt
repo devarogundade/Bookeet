@@ -52,6 +52,7 @@ class HomeFragment : Fragment() {
                 when (item.itemId) {
                     R.id.invoice -> findNavController().navigate(R.id.action_mainFragment_to_invoiceFragment)
                     R.id.bookKeeping -> findNavController().navigate(R.id.action_mainFragment_to_bookKeepingFragment)
+                    R.id.settings -> findNavController().navigate(R.id.action_mainFragment_to_profileSettingsFragment)
                 }
                 root.closeDrawer(GravityCompat.START)
                 true

@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
 import team.pacify.bookeet.R
 import team.pacify.bookeet.databinding.FragmentQrCodeBinding
+import team.pacify.bookeet.ui.qrcode.found.ItemFoundFragment
 
 class QrCodeFragment : Fragment() {
 
@@ -48,19 +48,12 @@ class QrCodeFragment : Fragment() {
     private val barcodeLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
-        if (result.contents == null) {
-            Toast.makeText(requireContext(), "Cancelled", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(
-                requireContext(),
-                "Scanned: " + result.contents,
-                Toast.LENGTH_LONG
-            ).show()
+        if (result.contents != null) {
+            foundItem()
         }
     }
 
-    // Launch
-    fun onButtonClick(view: View?) {
-        barcodeLauncher.launch(ScanOptions())
+    private fun foundItem() {
+        ItemFoundFragment().show(childFragmentManager, "childFragmentManager")
     }
 }

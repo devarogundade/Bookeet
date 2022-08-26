@@ -26,14 +26,6 @@ class ProfileViewModel
             _user.postValue(Resource.Loading())
             delay(1000)
             _user.postValue(Resource.Success(null))
-            delay(1000)
-            _user.postValue(Resource.Loading())
-            delay(1000)
-            _user.postValue(
-                Resource.Success(
-                    User()
-                )
-            )
         }
     }
 
