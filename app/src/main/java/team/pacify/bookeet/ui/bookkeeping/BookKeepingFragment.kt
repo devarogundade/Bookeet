@@ -1,4 +1,4 @@
-package team.pacify.bookeet.ui.additem
+package team.pacify.bookeet.ui.bookkeeping
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,33 +8,33 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import team.pacify.bookeet.R
-import team.pacify.bookeet.databinding.FragmentBaseAddBinding
-import team.pacify.bookeet.pager.AddItemPagerAdapter
-import team.pacify.bookeet.ui.additem.product.AddProductFragment
-import team.pacify.bookeet.ui.additem.service.AddServiceFragment
+import team.pacify.bookeet.databinding.FragmentBookKeepingBinding
+import team.pacify.bookeet.pager.PagerAdapter
+import team.pacify.bookeet.ui.bookkeeping.cashbook.CashbookFragment
+import team.pacify.bookeet.ui.bookkeeping.debts.DebtsFragment
 
-class BaseAddFragment : Fragment() {
+class BookKeepingFragment : Fragment() {
 
-    private lateinit var binding: FragmentBaseAddBinding
-    private val addProductFragment = AddProductFragment()
-    private val addServiceFragment = AddServiceFragment()
+    private lateinit var binding: FragmentBookKeepingBinding
+    private val cashbookFragment = CashbookFragment()
+    private val debtsFragment = DebtsFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBaseAddBinding.inflate(inflater)
+        binding = FragmentBookKeepingBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = AddItemPagerAdapter(
+        val adapter = PagerAdapter(
             requireActivity(),
             listOf(
-                addProductFragment,
-                addServiceFragment
+                cashbookFragment,
+                debtsFragment
             )
         )
 
@@ -47,18 +47,15 @@ class BaseAddFragment : Fragment() {
                 this.adapter = adapter
             }
 
-            save.setOnClickListener {
-                adapter.save(viewPager.currentItem)
-            }
-
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 tab.text = when (position) {
-                    0 -> getString(R.string.product)
-                    else -> getString(R.string.service)
+                    0 -> getString(R.string.cashbook)
+                    else -> getString(R.string.debts)
                 }
             }.attach()
         }
 
     }
+
 
 }

@@ -2,7 +2,6 @@ package team.pacify.bookeet.di
 
 import android.content.Context
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,14 +16,10 @@ object CommonModules {
 
     @Provides
     @Singleton
-    fun requestManager(@ApplicationContext context: Context): RequestManager {
-        return Glide.with(context)
-    }
+    fun requestManager(@ApplicationContext context: Context) = Glide.with(context)
 
     @Provides
     @Singleton
-    fun prettyTime(): PrettyTime {
-        return PrettyTime()
-    }
+    fun prettyTime() = PrettyTime()
 
 }

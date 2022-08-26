@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import team.pacify.bookeet.R
 import team.pacify.bookeet.databinding.FragmentProfileBinding
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
@@ -38,7 +40,7 @@ class ProfileFragment : Fragment() {
         viewModel.getUser(user?.uid)
 
         unsetProfile = UnsetProfile(binding.unsetProfile) {
-
+            findNavController().navigate(R.id.action_mainFragment_to_profileSettingsFragment)
         }
 
         viewModel.user.observe(viewLifecycleOwner) { resource ->
@@ -56,6 +58,7 @@ class ProfileFragment : Fragment() {
                 }
                 else -> {
                     if (resource.data == null) {
+                        binding.progressBar.visibility = View.GONE
                         binding.setProfile.visibility = View.GONE
                         unsetProfile.show()
                         return@observe

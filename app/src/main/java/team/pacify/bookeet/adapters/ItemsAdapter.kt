@@ -11,7 +11,11 @@ import team.pacify.bookeet.R
 import team.pacify.bookeet.data.models.finance.Sale
 import team.pacify.bookeet.databinding.ItemItemBinding
 
-class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>() {
+class ItemsAdapter(
+    private val onItemQrCode: (Sale) -> Unit,
+    private val onItemEdit: (Sale) -> Unit,
+) :
+    RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
         return ItemsViewHolder(
@@ -54,7 +58,8 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>() {
 
         fun bind(sale: Sale) {
             binding.apply {
-
+                editItem.setOnClickListener { onItemEdit(sale) }
+                qrcode.setOnClickListener { onItemQrCode(sale) }
             }
         }
     }

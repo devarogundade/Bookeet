@@ -25,10 +25,6 @@ class InventoryViewModel
         viewModelScope.launch {
             _products.postValue(Resource.Loading())
             delay(1000)
-            _products.postValue(Resource.Success(emptyList()))
-            delay(1000)
-            _products.postValue(Resource.Loading())
-            delay(1000)
             _products.postValue(
                 Resource.Success(
                     listOf(
