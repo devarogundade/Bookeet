@@ -96,7 +96,7 @@ class HomeFragment : Fragment() {
 
     private fun signOut() {
         firebaseAuth.signOut()
-        findNavController().navigate(R.id.phoneFragment)
+        findNavController().navigate(R.id.action_mainFragment_to_phoneFragment)
     }
 
 }
