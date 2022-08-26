@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_mainFragment_to_editItemFragment"
             app:destination="@id/editItemFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_reminderFragment"
+            app:destination="@id/reminderFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionsFragment"
@@ -137,4 +140,9 @@
         android:name="team.pacify.bookeet.ui.edititem.EditItemFragment"
         android:label="fragment_edit_item"
         tools:layout="@layout/fragment_edit_item" />
+    <fragment
+        android:id="@+id/reminderFragment"
+        android:name="team.pacify.bookeet.ui.reminder.ReminderFragment"
+        android:label="fragment_reminder"
+        tools:layout="@layout/fragment_reminder" />
 </navigation>

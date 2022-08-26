@@ -162,4 +162,8 @@
     <string name="attach_customer">Attach customer</string>
     <string name="_1">1</string>
     <string name="save_qr_code">Save Qrcode</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="search_reminders">Search reminders</string>
+    <string name="create_new_reminder">Create new reminder</string>
 </resources>
