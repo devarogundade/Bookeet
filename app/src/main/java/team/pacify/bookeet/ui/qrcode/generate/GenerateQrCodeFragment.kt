@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import team.pacify.bookeet.databinding.FragmentGenerateQrCodeBinding
 import team.pacify.bookeet.utils.Extensions
@@ -31,7 +30,7 @@ class GenerateQrCodeFragment : BottomSheetDialogFragment() {
 
         binding.apply {
             materialToolbar.setNavigationOnClickListener {
-                findNavController().popBackStack()
+                dismiss()
             }
         }
 
