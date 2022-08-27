@@ -11,10 +11,11 @@ class FirebaseProductDao @Inject constructor(
     private val fStore : FirebaseFirestore
 ): ProductDao {
 
-    override suspend fun addProduct(product: Product) {
+    override suspend fun addProduct(product: Product): Product {
         val ref = fStore.collection(DbConstants.PRODUCTS_PATH).document()
         product.id = ref.id
-        ref.set(product)
+        ref.set(product).await()
+        return product
       }
 
     override suspend fun deleteProduct(product: Product) {

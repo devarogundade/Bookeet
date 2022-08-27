@@ -31,7 +31,7 @@ class FirebaseUserDao @Inject constructor(
         return user
     }
 
-    override suspend fun getUser(userId: String): User? {
+    override suspend fun getUser(userId: String): User {
         val doc = fStore.collection(DbConstants.USERS_PATH)
             .document(userId).get().await()
         val user = doc.toObject<User>()
