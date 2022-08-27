@@ -11,5 +11,5 @@ interface SaleDao {
 
     suspend fun getSale(saleId: String): Sale
 
-    suspend fun getAllSales(userId: String): List<Sale>
+    suspend fun getAllSales(userId: String, startAt: Int, limit: Long): List<Sale>
 }

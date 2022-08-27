@@ -1,21 +1,16 @@
 package team.pacify.bookeet.di
 
-import android.content.Context
-import androidx.room.Room
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import team.pacify.bookeet.data.AppDatabase
 import team.pacify.bookeet.data.dao.*
 import team.pacify.bookeet.data.dao.finance.*
 import team.pacify.bookeet.data.dao.inventory.FirebaseServiceDao
+import team.pacify.bookeet.data.dao.inventory.ProductDao
 import team.pacify.bookeet.data.dao.inventory.ServiceDao
 import team.pacify.bookeet.data.dao.person.FirebaseSupplierDao
 import team.pacify.bookeet.data.dao.person.SupplierDao
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)

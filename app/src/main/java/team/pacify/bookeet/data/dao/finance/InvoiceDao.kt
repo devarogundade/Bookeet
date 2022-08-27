@@ -11,5 +11,5 @@ interface InvoiceDao {
 
     suspend fun getInvoice(invoiceId: String): Invoice
 
-    suspend fun getAllInvoices(userId: String): List<Invoice>
+    suspend fun getAllInvoices(userId: String, startAt: Int, limit: Long): List<Invoice>
 }

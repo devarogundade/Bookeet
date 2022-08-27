@@ -39,9 +39,9 @@ class FirebaseTransactionDao @Inject constructor(
         return transaction ?: throw Exception("No transaction found with ID")
     }
 
-    override suspend fun getAllTransactions(userId: String): List<Transaction> {
+    override suspend fun getAllTransactions(userId: String, startAt: Int, limit: Long): List<Transaction> {
         val doc = fStore.collection(rootPath)
-        val query = doc.whereEqualTo("userId", userId)
+        val query = doc.whereEqualTo("userId", userId).orderBy("timeStamp").startAt(startAt).limit(limit)
         val entries = ArrayList<Transaction>(1)
         val result = query.get().await()
 

@@ -11,5 +11,5 @@ interface ServiceDao {
 
     suspend fun getService(serviceId: String): Service
 
-    suspend fun getAllServices(userId: String): List<Service>
+    suspend fun getAllServices(userId: String, startAt: Int, limit: Long): List<Service>
 }

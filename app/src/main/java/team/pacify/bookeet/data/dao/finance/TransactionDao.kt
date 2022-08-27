@@ -11,5 +11,5 @@ interface TransactionDao {
 
     suspend fun getTransaction(transactionId: String): Transaction
 
-    suspend fun getAllTransactions(userId: String): List<Transaction>
+    suspend fun getAllTransactions(userId: String, startAt: Int, limit: Long): List<Transaction>
 }

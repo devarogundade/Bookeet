@@ -1,8 +1,11 @@
 package team.pacify.bookeet.data.models.inventory
 
+import com.google.firebase.firestore.ServerTimestamp
 import java.util.*
 
 data class Service(
+    @ServerTimestamp
+    val timeStamp: Date?,
     val image: String = "",
     val renderedOn: Date = Calendar.getInstance().time,
     override var id: String = "",

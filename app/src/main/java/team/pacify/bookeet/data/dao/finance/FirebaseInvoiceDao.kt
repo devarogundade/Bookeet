@@ -39,9 +39,9 @@ class FirebaseInvoiceDao @Inject constructor(
         return invoice ?: throw Exception("No invoice found with ID")
     }
 
-    override suspend fun getAllInvoices(userId: String): List<Invoice> {
+    override suspend fun getAllInvoices(userId: String, startAt: Int, limit: Long): List<Invoice> {
         val doc = fStore.collection(DbConstants.INVOICES_PATH)
-        val query = doc.whereEqualTo("userId", userId)
+        val query = doc.whereEqualTo("userId", userId).orderBy("timeStamp").startAt(startAt).limit(limit)
         val entries = ArrayList<Invoice>(1)
         val result = query.get().await()
 

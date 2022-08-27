@@ -1,10 +1,12 @@
 package team.pacify.bookeet.data.models.finance
 
+import com.google.firebase.firestore.ServerTimestamp
 import team.pacify.bookeet.data.models.Entry
-import team.pacify.bookeet.data.models.person.Customer
 import java.util.*
 
 data class Sale(
+    @ServerTimestamp
+    var timeStamp: Date?,
     val productId: String = "",
     val quantity: Int = -1,
     val paid: Double? = null,
