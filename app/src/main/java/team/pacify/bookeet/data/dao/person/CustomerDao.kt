@@ -1,4 +1,4 @@
-package team.pacify.bookeet.data.dao
+package team.pacify.bookeet.data.dao.person
 
 import team.pacify.bookeet.data.models.person.Customer
 

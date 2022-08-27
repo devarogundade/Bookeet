@@ -1,6 +1,6 @@
 package team.pacify.bookeet.utils
 
-object DbConstants{
+object DbConstants {
     const val ENTRIES_PATH: String = "entries"
     const val TRANSACTIONS_PATH: String = "transactions"
     const val USERS_PATH: String = "users"
@@ -12,5 +12,23 @@ object DbConstants{
     const val SERVICES_PATH = "services"
     const val INVOICES_PATH = "invoices"
     const val SALES_PATH = "sales"
+}
+
+object UIConstants {
+    const val MIN_ITEM_IN_STORE = 0
+    const val MAX_ITEM_IN_STORE = 99999999
+    val ItemUnits = listOf(
+        "Bag",
+        "Pack",
+        "Cup",
+        "Congo",
+        "Sack",
+        "Container",
+        "Sachet",
+        "Bundle",
+        "Kg",
+        "Litre",
+        "Dozen"
+    )
 }
 
