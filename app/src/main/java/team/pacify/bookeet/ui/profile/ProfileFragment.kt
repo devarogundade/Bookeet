@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import team.pacify.bookeet.R
 import team.pacify.bookeet.databinding.FragmentProfileBinding
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
@@ -31,39 +33,40 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        val user = firebaseAuth.currentUser ?: return
-        viewModel.getUser(user.uid)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        unsetProfile = UnsetProfile(binding.unsetProfile) {
+        val user = firebaseAuth.currentUser
+        viewModel.getUser(user?.uid)
 
+        unsetProfile = UnsetProfile(binding.unsetProfile) {
+            findNavController().navigate(R.id.action_mainFragment_to_profileSettingsFragment)
         }
 
         viewModel.user.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.setProfile.visibility = View.GONE
+                    unsetProfile.hide()
                 }
                 is Resource.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    unsetProfile.show()
                     Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT).show()
+                    binding.progressBar.visibility = View.GONE
+                    binding.setProfile.visibility = View.GONE
+                    unsetProfile.show()
                 }
                 else -> {
                     if (resource.data == null) {
+                        binding.progressBar.visibility = View.GONE
                         binding.setProfile.visibility = View.GONE
                         unsetProfile.show()
                         return@observe
                     }
 
+                    binding.progressBar.visibility = View.GONE
                     binding.setProfile.visibility = View.VISIBLE
                     unsetProfile.hide()
-                    binding.progressBar.visibility = View.GONE
                 }
             }
         }

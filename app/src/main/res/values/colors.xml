@@ -7,7 +7,13 @@
     <color name="text_title">#202C33</color>
     <color name="text_desc">#2F3F49</color>
     <color name="green">#20B94B</color>
+    <color name="pink">#FE8B8B</color>
     <color name="light_pink">#FDF0F0</color>
     <color name="light_green">#E4F3F2</color>
+    <color name="blue">#93FFB1</color>
+    <color name="light_blue">#F0F4FB</color>
+    <color name="light_amber">#F6EDDB</color>
     <color name="amber">#C64D0A</color>
+    <color name="amber_deep">#6B0404</color>
+    <color name="red">#DA0808</color>
 </resources>

@@ -1,13 +1,20 @@
 package team.pacify.bookeet.utils
 
 import android.app.Dialog
+import android.content.Context
 import android.view.View
 import android.view.ViewTreeObserver
+import android.widget.AutoCompleteTextView
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import team.pacify.bookeet.R
+import team.pacify.bookeet.data.models.finance.Sale
 import java.text.DecimalFormat
+import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import kotlin.math.floor
@@ -95,5 +102,69 @@ object Extensions {
         })
     }
 
+    fun List<Sale>.groupByDay(): List<List<Sale>> {
+        return groupBy {
+            val calender = Calendar.getInstance()
+            calender.time = it.soldOn
+
+            "${calender.get(Calendar.DAY_OF_YEAR)} ${calender.get(Calendar.YEAR)}"
+        }.map {
+            it.value
+        }
+    }
+
+    fun Context.validateInput(
+        field: TextInputEditText,
+        layout: TextInputLayout,
+        message: String? = null,
+        minLength: Int? = null,
+        requiredLength: Int? = null
+    ): Boolean {
+        return if (field.text.toString().trim().isEmpty()) {
+            field.error = message ?: getString(R.string.required_field)
+            field.requestFocus()
+            false
+        } else if (minLength != null && field.text.toString().trim().length < minLength) {
+            field.error = message ?: "Minimum length is $minLength"
+            field.requestFocus()
+            false
+        } else if (requiredLength != null && field.text.toString()
+                .trim().length != requiredLength
+        ) {
+            field.error = message ?: "Required length is $requiredLength"
+            field.requestFocus()
+            false
+        } else {
+            layout.isErrorEnabled = false
+            true
+        }
+    }
+
+    fun Context.validateInput(
+        field: AutoCompleteTextView,
+        layout: TextInputLayout,
+        message: String? = null,
+        minLength: Int? = null,
+        requiredLength: Int? = null
+    ): Boolean {
+        return if (field.text.toString().trim().isEmpty()) {
+            field.error = message ?: getString(R.string.required_field)
+            field.requestFocus()
+            false
+        } else if (minLength != null && field.text.toString().trim().length < minLength) {
+            field.error = message ?: "Minimum length is $minLength"
+            field.requestFocus()
+            false
+        } else if (requiredLength != null && field.text.toString()
+                .trim().length != requiredLength
+        ) {
+            field.error = message ?: "Required length is $requiredLength"
+            field.requestFocus()
+            false
+        } else {
+            layout.isErrorEnabled = false
+            true
+        }
+    }
 
 }
