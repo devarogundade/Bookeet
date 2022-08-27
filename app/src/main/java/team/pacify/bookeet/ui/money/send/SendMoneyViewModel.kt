@@ -15,20 +15,7 @@ class SendMoneyViewModel : ViewModel() {
     fun getBanks() {
         viewModelScope.launch {
             _banks.postValue(
-                listOf(
-                    Sale(
-                        customerName = "Sterling"
-                    ),
-                    Sale(
-                        customerName = "GTBank"
-                    ),
-                    Sale(
-                        customerName = "KudaMFB"
-                    ),
-                    Sale(
-                        customerName = "Polaris"
-                    ),
-                )
+                emptyList()
             )
         }
     }

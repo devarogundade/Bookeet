@@ -9,6 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:backgroundTint="@color/light_gray"
         app:cardCornerRadius="20dp"
         app:cardElevation="0dp">
 
@@ -17,8 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_user" />
+            android:scaleType="centerCrop" />
 
     </androidx.cardview.widget.CardView>
 
@@ -30,12 +30,12 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/name"
             style="@style/TextStyle16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
-            android:text="Rice"
             android:textColor="@color/text_title"
             android:textStyle="bold" />
 
@@ -46,7 +46,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:lines="1"
-            android:text="₦ 200.00"
             android:textColor="@color/text_desc" />
 
     </LinearLayout>
@@ -74,7 +73,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
-            android:text="1"
             android:textColor="@color/text_title" />
 
     </LinearLayout>

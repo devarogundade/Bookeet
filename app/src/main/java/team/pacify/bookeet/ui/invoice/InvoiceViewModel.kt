@@ -20,19 +20,7 @@ class InvoiceViewModel : ViewModel() {
             delay(1000)
             _invoices.postValue(
                 Resource.Success(
-                    listOf(
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale()
-                    )
+                    emptyList()
                 )
             )
         }

@@ -24,7 +24,7 @@ class CreateInvoiceStepOneFragment : ResultPagerFragment() {
     override fun onClick() = Unit
 
     override fun invoice(): Sale? {
-        return Sale()
+        return null
     }
 
 }

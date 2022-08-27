@@ -18,20 +18,7 @@ class HomeViewModel : ViewModel() {
             _sales.postValue(Resource.Loading())
             _sales.postValue(
                 Resource.Success(
-                    listOf(
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                    )
+                    emptyList()
                 )
             )
         }

@@ -4,13 +4,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import team.pacify.bookeet.data.dao.*
 import team.pacify.bookeet.data.dao.finance.*
+import team.pacify.bookeet.data.dao.inventory.FirebaseProductDao
 import team.pacify.bookeet.data.dao.inventory.FirebaseServiceDao
 import team.pacify.bookeet.data.dao.inventory.ProductDao
 import team.pacify.bookeet.data.dao.inventory.ServiceDao
-import team.pacify.bookeet.data.dao.person.FirebaseSupplierDao
-import team.pacify.bookeet.data.dao.person.SupplierDao
+import team.pacify.bookeet.data.dao.person.*
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -42,6 +41,5 @@ abstract class DataModules {
 
     @Binds
     abstract fun userDao(userDao: FirebaseUserDao): UserDao
-
 
 }

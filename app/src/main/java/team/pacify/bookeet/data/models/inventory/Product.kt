@@ -5,16 +5,16 @@ import java.util.*
 
 data class Product(
     @ServerTimestamp
-    var timeStamp: Date?,
+    var timeStamp: Date? = null,
     val image: String? = null,
     val barcodeString: String? = null,
     val inStock: Int = 0,
     val addedOn: Date = Calendar.getInstance().time,
     override var id: String = "",
     override val userId: String = "",
-    override val name: String,
-    override var costPrice: Double,
-    override var sellingPrice: Double,
-    override var qty: Double,
-    override var unit: String
-): InventoryItem
+    override val name: String = "",
+    override var costPrice: Double = 0.0,
+    override var sellingPrice: Double = 0.0,
+    override var qty: Double = 0.0,
+    override var unit: String = ""
+) : InventoryItem

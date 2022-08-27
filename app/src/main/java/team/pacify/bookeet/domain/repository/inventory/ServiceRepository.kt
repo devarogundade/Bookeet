@@ -1,10 +1,9 @@
-package team.pacify.bookeet.domain.repository.finance
+package team.pacify.bookeet.domain.repository.inventory
 
 import team.pacify.bookeet.data.dao.inventory.ServiceDao
 import team.pacify.bookeet.data.models.inventory.Service
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
-
 
 class ServiceRepository @Inject constructor(
     private val dao: ServiceDao

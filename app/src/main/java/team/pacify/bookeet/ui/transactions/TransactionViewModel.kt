@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import team.pacify.bookeet.data.models.finance.Sale
-import team.pacify.bookeet.utils.Extensions.groupByDay
 import team.pacify.bookeet.utils.Resource
 
 class TransactionViewModel : ViewModel() {
@@ -19,20 +18,7 @@ class TransactionViewModel : ViewModel() {
             _transactions.postValue(Resource.Loading())
             _transactions.postValue(
                 Resource.Success(
-                    listOf(
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                    ).groupByDay()
+                    emptyList()
                 )
             )
         }

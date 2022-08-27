@@ -20,19 +20,7 @@ class ReminderViewModel : ViewModel() {
             delay(1000)
             _reminders.postValue(
                 Resource.Success(
-                    listOf(
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale()
-                    )
+                    emptyList()
                 )
             )
         }

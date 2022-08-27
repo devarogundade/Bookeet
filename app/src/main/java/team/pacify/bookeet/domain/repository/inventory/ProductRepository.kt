@@ -1,10 +1,10 @@
-package team.pacify.bookeet.domain.repository.finance
+package team.pacify.bookeet.domain.repository.inventory
 
+import android.util.Log
 import team.pacify.bookeet.data.dao.inventory.ProductDao
 import team.pacify.bookeet.data.models.inventory.Product
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
-
 
 class ProductRepository @Inject constructor(
     private val dao: ProductDao
@@ -41,8 +41,10 @@ class ProductRepository @Inject constructor(
     suspend fun getAllProductForUser(userId: String, startAt: Int, limit: Long): Resource<List<Product>> {
         return try {
             val products = dao.getAllProductForUser(userId, startAt, limit)
+            Log.d("TAG", "getAllProductForUser: $products")
             Resource.Success(products)
         } catch (e: Exception) {
+            Log.d("TAG", "getAllProductForUser: $e")
             Resource.Error(e.localizedMessage ?: "Something went wrong")
         }
     }

@@ -20,19 +20,7 @@ class RequestMoneyViewModel : ViewModel() {
             delay(1000)
             _requests.postValue(
                 Resource.Success(
-                    listOf(
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale(),
-                        Sale()
-                    )
+                    emptyList()
                 )
             )
         }

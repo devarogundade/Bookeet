@@ -15,6 +15,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import team.pacify.bookeet.R
 import team.pacify.bookeet.databinding.FragmentSendMoneyBinding
 import team.pacify.bookeet.utils.Extensions.validateInput
+import team.pacify.bookeet.utils.UIConstants.ItemUnits
 
 class SendMoneyFragment : Fragment() {
 
@@ -53,7 +54,8 @@ class SendMoneyFragment : Fragment() {
             val banksAdapter = ArrayAdapter(
                 requireContext(),
                 R.layout.item_autocomplete_layout,
-                banks.map { it.customerName })
+                ItemUnits
+            )
             binding.banks.setAdapter(banksAdapter)
         }
 

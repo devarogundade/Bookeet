@@ -16,6 +16,10 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 import team.pacify.bookeet.R
 import team.pacify.bookeet.data.models.inventory.Product
 import team.pacify.bookeet.databinding.FragmentAddProductBinding
@@ -26,8 +30,14 @@ import team.pacify.bookeet.utils.Extensions.validateInput
 import team.pacify.bookeet.utils.Resource
 import team.pacify.bookeet.utils.UIConstants
 import team.pacify.bookeet.utils.UIConstants.ItemUnits
+import java.util.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class AddProductFragment : PagerFragment() {
+
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var binding: FragmentAddProductBinding
     private val viewModel: AddItemViewModel by viewModels()
@@ -40,6 +50,7 @@ class AddProductFragment : PagerFragment() {
     private var selectedImageUri: Uri? = null
 
     private lateinit var counterHandler: CounterHandler
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -83,6 +94,44 @@ class AddProductFragment : PagerFragment() {
             }
         }
 
+        progressDialog = ProgressDialog(requireContext()).apply {
+            setTitle("Adding product")
+            setCancelable(false)
+        }
+
+        viewModel.addProduct.observe(viewLifecycleOwner) { resource ->
+            when (resource) {
+                is Resource.Loading -> progressDialog.show()
+                is Resource.Error -> {
+                    progressDialog.dismiss()
+                    Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    progressDialog.dismiss()
+                    MaterialAlertDialogBuilder(requireContext()).apply {
+                        setTitle("Product added!")
+                        setMessage("You have successfully added ${resource.data?.name} to your inventory")
+                        setPositiveButton("Add new") { _, _ ->
+                            clearFields()
+                        }
+                        setNegativeButton("Close") { _, _ ->
+                            findNavController().popBackStack()
+                        }
+                    }.show()
+                }
+            }
+        }
+
+    }
+
+    private fun clearFields() {
+        binding.apply {
+            productName.setText("")
+            costPrice.setText("")
+            sellingPrice.setText("")
+            quantity.setText("")
+            units.setText("")
+        }
     }
 
     private fun setImage(uri: Uri?) {
@@ -145,36 +194,23 @@ class AddProductFragment : PagerFragment() {
 
     override fun onClick() {
         if (allInputsValidated()) {
-            val progress = ProgressDialog(requireContext()).apply {
-                setTitle("Adding product")
-                setCancelable(false)
-            }
-
-            progress.show()
-
             val uploadImage = ""
 
-            val resource = viewModel.addProduct(
+            viewModel.addProduct(
                 Product(
                     image = uploadImage,
                     barcodeString = "",
                     inStock = 0,
                     id = "",
-                    userId = "",
+                    userId = firebaseAuth.currentUser?.uid ?: return,
                     name = binding.productName.text.toString().trim(),
                     costPrice = binding.costPrice.text.toString().trim().toDouble(),
                     sellingPrice = binding.sellingPrice.text.toString().trim().toDouble(),
                     qty = binding.quantity.text.toString().trim().toDouble(),
-                    unit = binding.units.text.toString().trim()
+                    unit = binding.units.text.toString().trim(),
+                    timeStamp = Calendar.getInstance().time
                 )
             )
-
-            progress.dismiss()
-
-            if (resource is Resource.Error) {
-                Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT).show()
-                return
-            }
         } else {
             Toast.makeText(requireContext(), "Fill all required fields", Toast.LENGTH_SHORT).show()
         }
@@ -182,7 +218,7 @@ class AddProductFragment : PagerFragment() {
 
     private fun setUpValidators() {
         binding.productName.addTextChangedListener(TextFieldValidation(binding.productName) { result ->
-            isQuantity = result
+            isProductName = result
         })
         binding.costPrice.addTextChangedListener(TextFieldValidation(binding.costPrice) { result ->
             isCostPrice = result
@@ -191,10 +227,10 @@ class AddProductFragment : PagerFragment() {
             isSellingPrice = result
         })
         binding.quantity.addTextChangedListener(TextFieldValidation(binding.quantity) { result ->
-            isCostPrice = result
+            isQuantity = result
         })
         binding.units.addTextChangedListener(TextFieldValidation(binding.units) { result ->
-            isSellingPrice = result
+            isUnit = result
         })
     }
 

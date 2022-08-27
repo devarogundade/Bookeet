@@ -1,9 +1,8 @@
-package team.pacify.bookeet.data.dao
+package team.pacify.bookeet.data.dao.person
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.tasks.await
-import team.pacify.bookeet.data.dao.person.UserDao
 import team.pacify.bookeet.data.models.person.User
 import team.pacify.bookeet.utils.DbConstants
 import javax.inject.Inject

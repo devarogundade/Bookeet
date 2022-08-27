@@ -30,5 +30,6 @@ object UIConstants {
         "Litre",
         "Dozen"
     )
+    const val FIREBASE_LOAD_SIZE = 20L
 }
 
