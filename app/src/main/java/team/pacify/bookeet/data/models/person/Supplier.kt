@@ -8,4 +8,5 @@ data class Supplier(
     val address : String,
     val email : String,
     val location : Location,
-)
+    var id: String,
+ )
