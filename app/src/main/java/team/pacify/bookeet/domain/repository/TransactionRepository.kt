@@ -1,6 +1,6 @@
 package team.pacify.bookeet.domain.repository
 
-import team.pacify.bookeet.data.dao.TransactionDao
+import team.pacify.bookeet.data.dao.finance.TransactionDao
 import team.pacify.bookeet.data.models.finance.Transaction
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject

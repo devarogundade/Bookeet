@@ -1,15 +1,14 @@
-package team.pacify.bookeet.data.dao
+package team.pacify.bookeet.data.dao.finance
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.tasks.await
 import team.pacify.bookeet.data.models.finance.Transaction
-import java.time.Duration
 import javax.inject.Inject
 
 class FirebaseTransactionDao @Inject constructor(
     private val fStore: FirebaseFirestore,
-) : TransactionDaoI {
+) : TransactionDao {
      private val rootPath: String = "transaction"
 
     override suspend fun addTransaction(transaction: Transaction): Transaction {

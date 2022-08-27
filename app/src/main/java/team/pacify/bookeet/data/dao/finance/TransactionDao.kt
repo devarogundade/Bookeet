@@ -1,4 +1,4 @@
-package team.pacify.bookeet.data.dao
+package team.pacify.bookeet.data.dao.finance
 
 import team.pacify.bookeet.data.models.finance.Transaction
 
