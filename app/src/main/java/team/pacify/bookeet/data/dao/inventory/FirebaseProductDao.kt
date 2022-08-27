@@ -3,6 +3,7 @@ package team.pacify.bookeet.data.dao
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.tasks.await
+import team.pacify.bookeet.data.dao.inventory.ProductDao
 import team.pacify.bookeet.data.models.inventory.Product
 import team.pacify.bookeet.utils.DbConstants
 import javax.inject.Inject
@@ -39,7 +40,7 @@ class FirebaseProductDao @Inject constructor(
         return product ?: throw Exception("No product found with ID")
      }
 
-    override suspend fun getAllProductForUser(userId: String): List<Product> {
+    override suspend fun getAllProductForUser(userId: String, startAt: Int, limit: Long): List<Product> {
         val doc = fStore.collection(DbConstants.PRODUCTS_PATH)
         val query = doc.whereEqualTo("userId", userId)
         val products = ArrayList<Product>(1)

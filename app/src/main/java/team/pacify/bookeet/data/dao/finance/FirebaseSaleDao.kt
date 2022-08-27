@@ -39,9 +39,9 @@ class FirebaseSaleDao @Inject constructor(
         return sale ?: throw Exception("No sale found with ID")
     }
 
-    override suspend fun getAllSales(userId: String): List<Sale> {
+    override suspend fun getAllSales(userId: String, startAt: Int, limit: Long): List<Sale> {
         val doc = fStore.collection(DbConstants.SALES_PATH)
-        val query = doc.whereEqualTo("userId", userId)
+        val query = doc.whereEqualTo("userId", userId).orderBy("timeStamp").startAt(startAt).limit(limit)
         val entries = ArrayList<Sale>(1)
         val result = query.get().await()
 

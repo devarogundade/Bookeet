@@ -39,9 +39,9 @@ class FirebaseServiceDao @Inject constructor(
         return service ?: throw Exception("No service found with ID")
     }
 
-    override suspend fun getAllServices(userId: String): List<Service> {
+    override suspend fun getAllServices(userId: String, startAt: Int, limit: Long): List<Service> {
         val doc = fStore.collection(DbConstants.SERVICES_PATH)
-        val query = doc.whereEqualTo("userId", userId)
+        val query = doc.whereEqualTo("userId", userId).orderBy("timeStamp").startAt(startAt).limit(limit)
         val entries = ArrayList<Service>(1)
         val result = query.get().await()
 

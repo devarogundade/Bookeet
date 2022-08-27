@@ -1,8 +1,11 @@
 package team.pacify.bookeet.data.models.inventory
 
+import com.google.firebase.firestore.ServerTimestamp
 import java.util.*
 
 data class Product(
+    @ServerTimestamp
+    var timeStamp: Date?,
     val image: String? = null,
     val barcodeString: String? = null,
     val inStock: Int = 0,
