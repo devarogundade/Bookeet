@@ -132,7 +132,8 @@ class AddServiceFragment : PagerFragment() {
                     sellingPrice = 0.0,
                     qty = 0.0,
                     timeStamp = Calendar.getInstance().time
-                )
+                ),
+                null
             )
 
         } else {

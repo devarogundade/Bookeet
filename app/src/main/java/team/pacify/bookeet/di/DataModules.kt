@@ -12,6 +12,8 @@ import team.pacify.bookeet.data.dao.inventory.ServiceDao
 import team.pacify.bookeet.data.dao.messaging.ChatDao
 import team.pacify.bookeet.data.dao.messaging.FirebaseChatDao
 import team.pacify.bookeet.data.dao.person.*
+import team.pacify.bookeet.data.dao.storage.FirebaseStorageDao
+import team.pacify.bookeet.data.dao.storage.StorageDao
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -46,5 +48,8 @@ abstract class DataModules {
 
     @Binds
     abstract fun chatDao(chatDao: FirebaseChatDao): ChatDao
+
+    @Binds
+    abstract fun storageDao(storageDao: FirebaseStorageDao): StorageDao
 
 }

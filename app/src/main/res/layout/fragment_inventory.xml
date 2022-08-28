@@ -18,9 +18,11 @@
             android:visibility="gone" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/setInventory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="20dp">
+            android:paddingTop="20dp"
+            android:visibility="invisible">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout4"
@@ -98,7 +100,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingStart="20dp"
+                    android:paddingHorizontal="20dp"
                     android:text="@string/items"
                     android:textColor="@color/text_title"
                     android:textStyle="bold" />
@@ -112,6 +114,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/app_name"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
                         android:src="@drawable/ic_baseline_search_24" />
@@ -119,6 +122,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
                         android:src="@drawable/ic_baseline_delete_24"

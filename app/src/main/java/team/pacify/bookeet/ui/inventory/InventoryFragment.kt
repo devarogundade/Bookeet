@@ -56,7 +56,6 @@ class InventoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // initial call for data
         viewModel.getProducts(firebaseAuth.currentUser?.uid ?: return)
 
         emptyInventory = EmptyInventory(binding.emptyInventory) {
@@ -110,15 +109,18 @@ class InventoryFragment : Fragment() {
                     binding.root.isRefreshing = false
 
                     if (resource.data == null || resource.data.isEmpty()) {
+                        binding.setInventory.visibility = View.INVISIBLE
                         emptyInventory.show()
-                        return@observe
+                    } else {
+                        binding.setInventory.visibility = View.VISIBLE
+                        emptyInventory.hide()
                     }
 
-                    emptyInventory.hide()
-                    inventoryAdapter.setProducts(resource.data)
+                    inventoryAdapter.setProducts(resource.data ?: emptyList())
 
-                    binding.productCount.text = "${resource.data.size} products"
-                    binding.stockValue.text = resource.data.stockValue().toNaira()
+                    binding.productCount.text = "${(resource.data?.size) ?: 0} products"
+                    binding.stockValue.text =
+                        resource.data?.stockValue()?.toNaira() ?: 0.0.toNaira()
                 }
             }
         }

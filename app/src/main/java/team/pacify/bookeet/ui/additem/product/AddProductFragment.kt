@@ -194,11 +194,9 @@ class AddProductFragment : PagerFragment() {
 
     override fun onClick() {
         if (allInputsValidated()) {
-            val uploadImage = ""
-
             viewModel.addProduct(
                 Product(
-                    image = uploadImage,
+                    image = "",
                     barcodeString = "",
                     inStock = binding.quantity.text.toString().trim().toInt(),
                     id = "",
@@ -209,7 +207,8 @@ class AddProductFragment : PagerFragment() {
                     qty = binding.quantity.text.toString().trim().toDouble(),
                     unit = binding.units.text.toString().trim(),
                     timeStamp = Calendar.getInstance().time
-                )
+                ),
+                selectedImageUri
             )
         } else {
             Toast.makeText(requireContext(), "Fill all required fields", Toast.LENGTH_SHORT).show()

@@ -110,6 +110,7 @@ class HomeFragment : Fragment() {
                 }
             } else {
                 binding.welcome.text = "Hi, welcome"
+                binding.balance.text = 0.0.toNaira()
             }
 
         }
