@@ -9,12 +9,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 import team.pacify.bookeet.R
 import team.pacify.bookeet.adapters.InvoiceAdapter
 import team.pacify.bookeet.databinding.FragmentInvoiceBinding
 import team.pacify.bookeet.utils.Resource
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class InvoiceFragment : Fragment() {
+
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
 
     private val viewModel: InvoiceViewModel by viewModels()
     private lateinit var binding: FragmentInvoiceBinding
@@ -31,7 +38,7 @@ class InvoiceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getInvoices()
+        viewModel.getInvoices(firebaseAuth.currentUser?.uid ?: return)
 
         binding.apply {
             materialToolbar2.setNavigationOnClickListener {
@@ -52,26 +59,25 @@ class InvoiceFragment : Fragment() {
             when (resource) {
                 is Resource.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
-                    binding.empty.visibility = View.GONE
                 }
                 is Resource.Error -> {
                     binding.progressBar.visibility = View.GONE
-                    binding.empty.visibility = View.GONE
-
                     Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT)
                         .show()
                 }
                 else -> {
+                    binding.progressBar.visibility = View.GONE
+
                     if (resource.data == null || resource.data.isEmpty()) {
                         binding.empty.visibility = View.VISIBLE
                         return@observe
                     }
+
+                    binding.empty.visibility = View.GONE
                     invoiceAdapter.setSales(resource.data)
-                    binding.progressBar.visibility = View.GONE
                 }
             }
         }
-
 
     }
 

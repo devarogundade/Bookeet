@@ -4,25 +4,28 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import team.pacify.bookeet.data.models.finance.Sale
+import team.pacify.bookeet.data.models.finance.Invoice
+import team.pacify.bookeet.domain.repository.finance.InvoiceRepository
 import team.pacify.bookeet.utils.Resource
+import javax.inject.Inject
 
-class InvoiceViewModel : ViewModel() {
+@HiltViewModel
+class InvoiceViewModel
+@Inject constructor(
+    private val invoiceRepository: InvoiceRepository
+) : ViewModel() {
 
-    private val _invoices = MutableLiveData<Resource<List<Sale>>>()
-    val invoices: LiveData<Resource<List<Sale>>> = _invoices
+    private val _invoices = MutableLiveData<Resource<List<Invoice>>>()
+    val invoices: LiveData<Resource<List<Invoice>>> = _invoices
 
-    fun getInvoices() {
+    fun getInvoices(userId: String) {
         viewModelScope.launch {
             _invoices.postValue(Resource.Loading())
-            delay(1000)
-            _invoices.postValue(
-                Resource.Success(
-                    emptyList()
-                )
-            )
+            invoiceRepository.getAllInvoices(userId, 0, 10).collect { resource ->
+                _invoices.postValue(resource)
+            }
         }
     }
 

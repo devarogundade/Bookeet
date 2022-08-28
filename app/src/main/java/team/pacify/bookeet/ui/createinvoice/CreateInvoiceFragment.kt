@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import team.pacify.bookeet.R
 import team.pacify.bookeet.data.models.finance.Invoice
@@ -19,9 +20,13 @@ import team.pacify.bookeet.pager.InvoiceInteractivePagerAdapter
 import team.pacify.bookeet.ui.createinvoice.steps.CreateInvoiceStepOneFragment
 import team.pacify.bookeet.ui.createinvoice.steps.CreateInvoiceStepTwoFragment
 import team.pacify.bookeet.utils.Resource
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CreateInvoiceFragment : Fragment() {
+
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
 
     private val viewModel: CreateInvoiceViewModel by viewModels()
 
@@ -89,7 +94,11 @@ class CreateInvoiceFragment : Fragment() {
                             amountReceived = result.amountReceived,
                             paymentMethod = result.paymentMethod
                         )
-                        viewModel.addInvoice(invoice)
+                        viewModel.addInvoice(
+                            invoice.copy(
+                                userId = firebaseAuth.currentUser?.uid ?: return@setOnClickListener
+                            )
+                        )
                     }
                 } else {
                     Toast.makeText(requireContext(), "Fill the required fields", Toast.LENGTH_SHORT)

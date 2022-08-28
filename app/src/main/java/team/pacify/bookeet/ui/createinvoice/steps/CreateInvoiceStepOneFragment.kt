@@ -81,6 +81,7 @@ class CreateInvoiceStepOneFragment : InvoicePagerFragment() {
         }
 
         binding.apply {
+            invoiceId.setText(UUID.randomUUID().toString().substring(0, 10))
             invoiceDate.setText(SimpleDateFormat("dd/MM/yyyy").format(date))
 
             this.datePicker.setOnClickListener {
@@ -116,10 +117,11 @@ class CreateInvoiceStepOneFragment : InvoicePagerFragment() {
         return Invoice(
             id = binding.invoiceId.text.toString().trim(),
             customerName = binding.customerName.text.toString().trim(),
-            timeStamp = date,
+            timeStamp = Calendar.getInstance().time,
             date = date,
             soldProductAmount = 0.0,
-            qty = qty
+            qty = qty,
+            soldProductName = binding.productName.text.toString().trim()
         )
     }
 

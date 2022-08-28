@@ -1,5 +1,6 @@
 package team.pacify.bookeet.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +8,9 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import team.pacify.bookeet.R
-import team.pacify.bookeet.data.models.finance.Sale
+import team.pacify.bookeet.data.models.finance.Invoice
 import team.pacify.bookeet.databinding.InvoiceItemBinding
+import team.pacify.bookeet.utils.Extensions.toNaira
 
 class InvoiceAdapter : RecyclerView.Adapter<InvoiceAdapter.InvoiceViewHolder>() {
 
@@ -25,17 +27,17 @@ class InvoiceAdapter : RecyclerView.Adapter<InvoiceAdapter.InvoiceViewHolder>() 
 
     override fun getItemCount(): Int = diffResult.currentList.size
 
-    private val diffUtil = object : DiffUtil.ItemCallback<Sale>() {
+    private val diffUtil = object : DiffUtil.ItemCallback<Invoice>() {
         override fun areItemsTheSame(
-            oldItem: Sale,
-            newItem: Sale
+            oldItem: Invoice,
+            newItem: Invoice
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: Sale,
-            newItem: Sale
+            oldItem: Invoice,
+            newItem: Invoice
         ): Boolean {
             return oldItem == newItem
         }
@@ -43,15 +45,19 @@ class InvoiceAdapter : RecyclerView.Adapter<InvoiceAdapter.InvoiceViewHolder>() 
 
     private val diffResult = AsyncListDiffer(this, diffUtil)
 
-    fun setSales(sales: List<Sale>) {
-        diffResult.submitList(sales)
+    fun setSales(invoices: List<Invoice>) {
+        diffResult.submitList(invoices)
     }
 
     inner class InvoiceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = InvoiceItemBinding.bind(itemView)
 
-        fun bind(sale: Sale) {
+        @SuppressLint("SetTextI18n")
+        fun bind(invoice: Invoice) {
             binding.apply {
+                customerName.text = invoice.customerName
+                invoiceId.text = "INV: ${invoice.id}"
+                price.text = invoice.amountReceived.toNaira()
             }
         }
     }
