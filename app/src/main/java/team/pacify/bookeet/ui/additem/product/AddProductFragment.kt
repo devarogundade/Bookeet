@@ -146,7 +146,7 @@ class AddProductFragment : PagerFragment() {
             BitmapFactory.decodeStream(requireContext().contentResolver.openInputStream(uri))
         binding.image.apply {
             setImageBitmap(bitmap)
-            visibility = View.GONE
+            visibility = View.VISIBLE
         }
     }
 
@@ -200,7 +200,7 @@ class AddProductFragment : PagerFragment() {
                 Product(
                     image = uploadImage,
                     barcodeString = "",
-                    inStock = 0,
+                    inStock = binding.quantity.text.toString().trim().toInt(),
                     id = "",
                     userId = firebaseAuth.currentUser?.uid ?: return,
                     name = binding.productName.text.toString().trim(),

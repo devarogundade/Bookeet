@@ -1,6 +1,6 @@
 package team.pacify.bookeet.domain.repository.inventory
 
-import android.util.Log
+import kotlinx.coroutines.flow.Flow
 import team.pacify.bookeet.data.dao.inventory.ProductDao
 import team.pacify.bookeet.data.models.inventory.Product
 import team.pacify.bookeet.utils.Resource
@@ -38,15 +38,12 @@ class ProductRepository @Inject constructor(
         }
     }
 
-    suspend fun getAllProductForUser(userId: String, startAt: Int, limit: Long): Resource<List<Product>> {
-        return try {
-            val products = dao.getAllProductForUser(userId, startAt, limit)
-            Log.d("TAG", "getAllProductForUser: $products")
-            Resource.Success(products)
-        } catch (e: Exception) {
-            Log.d("TAG", "getAllProductForUser: $e")
-            Resource.Error(e.localizedMessage ?: "Something went wrong")
-        }
+    suspend fun getAllProductForUser(
+        userId: String,
+        startAt: Int,
+        limit: Long
+    ): Flow<Resource<List<Product>>> {
+        return dao.getAllProductForUser(userId, startAt, limit)
     }
 
 }

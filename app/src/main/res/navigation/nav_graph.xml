@@ -81,9 +81,6 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_mainFragment_to_editItemFragment"
-            app:destination="@id/editItemFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_reminderFragment"
             app:destination="@id/reminderFragment"
             app:enterAnim="@anim/slide_in_right"
@@ -145,11 +142,6 @@
         android:name="team.pacify.bookeet.ui.settings.ProfileSettingsFragment"
         android:label="fragment_profile_settings"
         tools:layout="@layout/fragment_profile_settings" />
-    <dialog
-        android:id="@+id/editItemFragment"
-        android:name="team.pacify.bookeet.ui.edititem.EditItemFragment"
-        android:label="fragment_edit_item"
-        tools:layout="@layout/fragment_edit_item" />
     <fragment
         android:id="@+id/reminderFragment"
         android:name="team.pacify.bookeet.ui.reminder.ReminderFragment"

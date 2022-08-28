@@ -2,9 +2,16 @@ package team.pacify.bookeet.data.dao.finance
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.firestore.ktx.toObjects
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import team.pacify.bookeet.data.models.finance.Account
 import team.pacify.bookeet.utils.DbConstants
+import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
 
 class FirebaseAccountDao @Inject constructor(
@@ -39,19 +46,26 @@ class FirebaseAccountDao @Inject constructor(
         return account ?: throw Exception("No account found with ID")
     }
 
-    override suspend fun getAllAccounts(userId: String): List<Account> {
-        val doc = fStore.collection(DbConstants.ACCOUNTS_PATH)
-        val query = doc.whereEqualTo("userId", userId)
-        val entries = ArrayList<Account>(1)
-        val result = query.get().await()
-
-        for (r in result.documents) {
-            val account = r.toObject<Account>()
-            if (account != null) {
-                entries.add(account)
+    override suspend fun getAllAccounts(userId: String): Flow<Resource<List<Account>>> {
+        return callbackFlow {
+            val doc = fStore.collection(DbConstants.ACCOUNTS_PATH)
+            doc.whereEqualTo("userId", userId)
+                .addSnapshotListener { value, error ->
+                    if (error != null)
+                        launch {
+                            send(
+                                Resource.Error(
+                                    error.localizedMessage ?: "Something went wrong"
+                                )
+                            )
+                        }
+                    if (value != null)
+                        launch { send(Resource.Success(value.toObjects())) }
+                }
+            awaitClose {
+                cancel()
             }
         }
-        return entries
     }
 
 }

@@ -2,9 +2,16 @@ package team.pacify.bookeet.data.dao.finance
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.firestore.ktx.toObjects
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import team.pacify.bookeet.data.models.finance.Invoice
 import team.pacify.bookeet.utils.DbConstants
+import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
 
 class FirebaseInvoiceDao @Inject constructor(
@@ -39,19 +46,30 @@ class FirebaseInvoiceDao @Inject constructor(
         return invoice ?: throw Exception("No invoice found with ID")
     }
 
-    override suspend fun getAllInvoices(userId: String, startAt: Int, limit: Long): List<Invoice> {
-        val doc = fStore.collection(DbConstants.INVOICES_PATH)
-        val query = doc.whereEqualTo("userId", userId).orderBy("timeStamp").startAt(startAt).limit(limit)
-        val entries = ArrayList<Invoice>(1)
-        val result = query.get().await()
-
-        for (r in result.documents) {
-            val invoice = r.toObject<Invoice>()
-            if (invoice != null) {
-                entries.add(invoice)
+    override suspend fun getAllInvoices(
+        userId: String,
+        startAt: Int,
+        limit: Long
+    ): Flow<Resource<List<Invoice>>> {
+        return callbackFlow {
+            val doc = fStore.collection(DbConstants.INVOICES_PATH)
+            doc.whereEqualTo("userId", userId)
+                .addSnapshotListener { value, error ->
+                    if (error != null)
+                        launch {
+                            send(
+                                Resource.Error(
+                                    error.localizedMessage ?: "Something went wrong"
+                                )
+                            )
+                        }
+                    if (value != null)
+                        launch { send(Resource.Success(value.toObjects())) }
+                }
+            awaitClose {
+                cancel()
             }
         }
-        return entries
     }
 
 }

@@ -98,7 +98,7 @@ class AddServiceFragment : PagerFragment() {
             BitmapFactory.decodeStream(requireContext().contentResolver.openInputStream(uri))
         binding.image.apply {
             setImageBitmap(bitmap)
-            visibility = View.GONE
+            visibility = View.VISIBLE
         }
     }
 

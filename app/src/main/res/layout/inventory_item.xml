@@ -62,12 +62,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/quantity"
+            android:text="@string/in_stock"
             android:textColor="@color/text_title"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/quantity"
+            android:id="@+id/inStock"
             style="@style/TextStyle14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,6 +1,8 @@
 package team.pacify.bookeet.data.dao.finance
 
+import kotlinx.coroutines.flow.Flow
 import team.pacify.bookeet.data.models.finance.Invoice
+import team.pacify.bookeet.utils.Resource
 
 interface InvoiceDao {
     suspend fun addInvoice(invoice: Invoice): Invoice
@@ -11,5 +13,9 @@ interface InvoiceDao {
 
     suspend fun getInvoice(invoiceId: String): Invoice
 
-    suspend fun getAllInvoices(userId: String, startAt: Int, limit: Long): List<Invoice>
+    suspend fun getAllInvoices(
+        userId: String,
+        startAt: Int,
+        limit: Long
+    ): Flow<Resource<List<Invoice>>>
 }

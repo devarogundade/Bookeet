@@ -166,4 +166,7 @@
     <string name="edit">Edit</string>
     <string name="search_reminders">Search reminders</string>
     <string name="create_new_reminder">Create new reminder</string>
+    <string name="in_stock">In Stock</string>
+    <string name="transactions">Transactions</string>
+    <string name="recent_sales">Recent sales</string>
 </resources>

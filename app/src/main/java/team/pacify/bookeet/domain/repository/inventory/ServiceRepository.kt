@@ -1,5 +1,6 @@
 package team.pacify.bookeet.domain.repository.inventory
 
+import kotlinx.coroutines.flow.Flow
 import team.pacify.bookeet.data.dao.inventory.ServiceDao
 import team.pacify.bookeet.data.models.inventory.Service
 import team.pacify.bookeet.utils.Resource
@@ -37,13 +38,12 @@ class ServiceRepository @Inject constructor(
         }
     }
 
-    suspend fun getAllServices(userId: String, startAt: Int, limit: Long): Resource<List<Service>> {
-        return try {
-            val services = dao.getAllServices(userId, startAt, limit)
-            Resource.Success(services)
-        } catch (e: Exception) {
-            Resource.Error(e.localizedMessage ?: "Something went wrong")
-        }
+    suspend fun getAllServices(
+        userId: String,
+        startAt: Int,
+        limit: Long
+    ): Flow<Resource<List<Service>>> {
+        return dao.getAllServices(userId, startAt, limit)
     }
 
 }

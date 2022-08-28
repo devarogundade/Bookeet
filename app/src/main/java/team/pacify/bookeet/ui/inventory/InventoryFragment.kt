@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import team.pacify.bookeet.R
 import team.pacify.bookeet.adapters.InventoryAdapter
 import team.pacify.bookeet.databinding.FragmentInventoryBinding
+import team.pacify.bookeet.ui.inventory.edititem.EditItemFragment
 import team.pacify.bookeet.ui.qrcode.generate.GenerateQrCodeFragment
 import team.pacify.bookeet.utils.Resource
 import team.pacify.bookeet.utils.ScrollAdapter
@@ -33,10 +34,12 @@ class InventoryFragment : Fragment() {
     private var scrollAdapter: ScrollAdapter? = null
 
 
-    private val inventoryAdapter = InventoryAdapter({ _ ->
-        GenerateQrCodeFragment().show(childFragmentManager, "childFragmentManager")
-    }, { _ ->
-        findNavController().navigate(R.id.action_mainFragment_to_editItemFragment)
+    private val inventoryAdapter = InventoryAdapter({ product ->
+        GenerateQrCodeFragment(product).show(childFragmentManager, "childFragmentManager")
+    }, { product ->
+        EditItemFragment(product) { newProduct ->
+            viewModel.updateProduct(newProduct)
+        }.show(childFragmentManager, "childFragmentManager")
     })
 
     override fun onCreateView(
@@ -101,14 +104,14 @@ class InventoryFragment : Fragment() {
                     }
                 }
                 else -> {
+                    binding.root.isRefreshing = false
+
                     if (resource.data == null || resource.data.isEmpty()) {
                         emptyInventory.show()
                         return@observe
                     }
 
-                    binding.root.isRefreshing = false
                     emptyInventory.hide()
-
                     inventoryAdapter.setProducts(resource.data)
                 }
             }

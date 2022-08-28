@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_baseline_close_24"
-        app:title="Rice"
         app:titleCentered="true"
         app:titleTextAppearance="@style/TextStyle20"
         app:titleTextColor="@color/text_title" />
@@ -39,11 +38,11 @@
         app:layout_constraintTop_toBottomOf="@+id/divider3">
 
         <TextView
+            android:id="@+id/question"
             style="@style/TextStyle16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="How many cups did you sold?"
             android:textColor="@color/text_title" />
 
         <androidx.cardview.widget.CardView

@@ -15,4 +15,4 @@ data class Service(
     override var sellingPrice: Double,
     override var qty: Double,
     override var unit: String,
-): InventoryItem
+) : InventoryItem

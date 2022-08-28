@@ -58,7 +58,7 @@ class InventoryAdapter(
         fun bind(product: Product) {
             binding.apply {
                 name.text = product.name
-                quantity.text = product.qty.toString()
+                inStock.text = product.inStock.toString()
                 price.text = product.sellingPrice.toNaira()
 
                 editItem.setOnClickListener { onProductEdit(product) }

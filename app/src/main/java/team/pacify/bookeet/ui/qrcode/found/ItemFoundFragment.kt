@@ -1,18 +1,26 @@
 package team.pacify.bookeet.ui.qrcode.found
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import team.pacify.bookeet.data.models.inventory.Product
+import team.pacify.bookeet.data.models.person.Customer
 import team.pacify.bookeet.databinding.FragmentItemFoundBinding
 import team.pacify.bookeet.utils.CounterHandler
 import team.pacify.bookeet.utils.Extensions.expand
 import team.pacify.bookeet.utils.UIConstants
 
-class ItemFoundFragment : BottomSheetDialogFragment() {
+class ItemFoundFragment(
+    private val product: Product,
+    private val sold: (Int, Product, Customer?) -> Unit
+) :
+    BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentItemFoundBinding
     private lateinit var counterHandler: CounterHandler
@@ -25,6 +33,7 @@ class ItemFoundFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -43,9 +52,13 @@ class ItemFoundFragment : BottomSheetDialogFragment() {
             .build()
 
         binding.apply {
-            materialToolbar.setNavigationOnClickListener {
+            materialToolbar.apply {
+                title = product.name
+            }.setNavigationOnClickListener {
                 dismiss()
             }
+
+            question.text = "How many ${product.unit} did you sold?"
 
             quantity.apply {
                 setText("0")
@@ -53,6 +66,27 @@ class ItemFoundFragment : BottomSheetDialogFragment() {
             }
 
             sold.setOnClickListener {
+                val qty = binding.quantity.text.toString().trim()
+
+                if (qty.isEmpty()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Enter the amount you sold",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@setOnClickListener
+                }
+
+                if (product.inStock < qty.toInt()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "You have only ${product.inStock} in stock",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@setOnClickListener
+                }
+
+                sold(qty.toInt(), product, null)
                 dismiss()
             }
         }

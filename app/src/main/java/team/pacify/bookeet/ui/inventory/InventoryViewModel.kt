@@ -29,13 +29,19 @@ class InventoryViewModel
             _products.postValue(Resource.Loading())
 
             val resultSize = products.value?.data?.size ?: 0
-            _products.postValue(
-                productRepository.getAllProductForUser(
-                    userId = userId,
-                    startAt = resultSize,
-                    limit = resultSize + FIREBASE_LOAD_SIZE
-                )
-            )
+            productRepository.getAllProductForUser(
+                userId = userId,
+                startAt = resultSize + 1,
+                limit = resultSize + FIREBASE_LOAD_SIZE
+            ).collect { resource ->
+                _products.postValue(resource)
+            }
+        }
+    }
+
+    fun updateProduct(product: Product) {
+        viewModelScope.launch {
+            productRepository.updateProduct(product)
         }
     }
 

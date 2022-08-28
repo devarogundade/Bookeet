@@ -1,5 +1,6 @@
 package team.pacify.bookeet.domain.repository.finance
 
+import kotlinx.coroutines.flow.Flow
 import team.pacify.bookeet.data.dao.finance.InvoiceDao
 import team.pacify.bookeet.data.models.finance.Invoice
 import team.pacify.bookeet.utils.Resource
@@ -38,13 +39,12 @@ class InvoiceRepository @Inject constructor(
         }
     }
 
-    suspend fun getAllInvoices(userId: String, startAt: Int, limit: Long): Resource<List<Invoice>> {
-        return try {
-            val invoices = dao.getAllInvoices(userId, startAt, limit)
-            Resource.Success(invoices)
-        } catch (e: Exception) {
-            Resource.Error(e.localizedMessage ?: "Something went wrong")
-        }
+    suspend fun getAllInvoices(
+        userId: String,
+        startAt: Int,
+        limit: Long
+    ): Flow<Resource<List<Invoice>>> {
+        return dao.getAllInvoices(userId, startAt, limit)
     }
 
 }

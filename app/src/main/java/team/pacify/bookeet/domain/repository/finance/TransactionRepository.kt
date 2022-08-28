@@ -1,5 +1,6 @@
 package team.pacify.bookeet.domain.repository.finance
 
+import kotlinx.coroutines.flow.Flow
 import team.pacify.bookeet.data.dao.finance.TransactionDao
 import team.pacify.bookeet.data.models.finance.Transaction
 import team.pacify.bookeet.utils.Resource
@@ -17,7 +18,7 @@ class TransactionRepository @Inject constructor(
         }
     }
 
-    suspend fun deleteTransaction(transaction: Transaction){
+    suspend fun deleteTransaction(transaction: Transaction) {
         dao.deleteTransaction(transaction)
     }
 
@@ -38,13 +39,12 @@ class TransactionRepository @Inject constructor(
         }
     }
 
-    suspend fun getAllTransaction(userId: String, startAt: Int, limit: Long): Resource<List<Transaction>> {
-        return try {
-            val transactions = dao.getAllTransactions(userId, startAt, limit)
-            Resource.Success(transactions)
-        } catch (e: Exception) {
-            Resource.Error(e.localizedMessage ?: "Something went wrong")
-        }
+    suspend fun getAllTransaction(
+        userId: String,
+        startAt: Int,
+        limit: Long
+    ): Flow<Resource<List<Transaction>>> {
+        return dao.getAllTransactions(userId, startAt, limit)
     }
 
 }
