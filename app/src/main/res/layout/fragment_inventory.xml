@@ -50,22 +50,22 @@
                         android:src="@drawable/ic_box" />
 
                     <TextView
+                        android:id="@+id/productCount"
                         style="@style/TextStyle16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:lines="1"
-                        android:text="1 stock count"
                         android:textColor="@color/text_title" />
 
                     <TextView
+                        android:id="@+id/stockValue"
                         style="@style/TextStyle18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:gravity="end"
                         android:lines="1"
-                        android:text="₦ 200.00"
                         android:textColor="@color/primary"
                         android:textStyle="bold" />
 

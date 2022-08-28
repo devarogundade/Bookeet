@@ -12,9 +12,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import team.pacify.bookeet.R
-import team.pacify.bookeet.data.models.finance.Sale
+import team.pacify.bookeet.data.models.inventory.Product
 import java.text.DecimalFormat
-import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import kotlin.math.floor
@@ -102,15 +101,12 @@ object Extensions {
         })
     }
 
-    fun List<Sale>.groupByDay(): List<List<Sale>> {
-        return groupBy {
-            val calender = Calendar.getInstance()
-            calender.time = it.soldOn
-
-            "${calender.get(Calendar.DAY_OF_YEAR)} ${calender.get(Calendar.YEAR)}"
-        }.map {
-            it.value
+    fun List<Product>.stockValue(): Double {
+        var value = 0.0
+        forEach { product ->
+            value += product.inStock * product.sellingPrice
         }
+        return value
     }
 
     fun Context.validateInput(

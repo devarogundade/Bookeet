@@ -1,5 +1,6 @@
 package team.pacify.bookeet.ui.inventory
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,8 @@ import team.pacify.bookeet.adapters.InventoryAdapter
 import team.pacify.bookeet.databinding.FragmentInventoryBinding
 import team.pacify.bookeet.ui.inventory.edititem.EditItemFragment
 import team.pacify.bookeet.ui.qrcode.generate.GenerateQrCodeFragment
+import team.pacify.bookeet.utils.Extensions.stockValue
+import team.pacify.bookeet.utils.Extensions.toNaira
 import team.pacify.bookeet.utils.Resource
 import team.pacify.bookeet.utils.ScrollAdapter
 import team.pacify.bookeet.utils.UIConstants.FIREBASE_LOAD_SIZE
@@ -32,7 +35,6 @@ class InventoryFragment : Fragment() {
     private lateinit var emptyInventory: EmptyInventory
     private val viewModel: InventoryViewModel by viewModels()
     private var scrollAdapter: ScrollAdapter? = null
-
 
     private val inventoryAdapter = InventoryAdapter({ product ->
         GenerateQrCodeFragment(product).show(childFragmentManager, "childFragmentManager")
@@ -50,6 +52,7 @@ class InventoryFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -113,6 +116,9 @@ class InventoryFragment : Fragment() {
 
                     emptyInventory.hide()
                     inventoryAdapter.setProducts(resource.data)
+
+                    binding.productCount.text = "${resource.data.size} products"
+                    binding.stockValue.text = resource.data.stockValue().toNaira()
                 }
             }
         }
