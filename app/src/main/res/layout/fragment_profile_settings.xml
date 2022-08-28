@@ -47,6 +47,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
+                android:backgroundTint="@color/light_gray"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -123,7 +124,8 @@
                         style="@style/TextStyle16"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/account_number"
+                        android:enabled="false"
+                        android:hint="Account number"
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:textColor="@color/text_title" />
@@ -176,9 +178,9 @@
                         android:layout_height="match_parent"
                         android:autofillHints="phone"
                         android:background="@null"
+                        android:enabled="false"
                         android:gravity="center_vertical"
                         android:hint="@string/phone_number"
-                        android:inputType="number"
                         android:paddingHorizontal="20dp"
                         android:textColor="@color/text_title"
                         android:textStyle="bold"
@@ -209,7 +211,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/pinLaypot"
+                    android:id="@+id/pin_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:boxBackgroundColor="@color/light_gray"

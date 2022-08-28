@@ -150,7 +150,7 @@
     <string name="required_field">Required field</string>
     <string name="min_amount_send">You can send less than ₦100</string>
     <string name="account_name">Account name *</string>
-    <string name="bvn">Bvn *</string>
+    <string name="bvn">Bvn</string>
     <string name="password">Password *</string>
     <string name="email_address">Email address *</string>
     <string name="update_profile">Update profile</string>

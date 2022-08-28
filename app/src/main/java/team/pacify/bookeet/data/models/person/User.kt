@@ -1,6 +1,7 @@
 package team.pacify.bookeet.data.models.person
 
 import team.pacify.bookeet.data.models.Entry
+import java.io.Serializable
 
 data class User(
     override var id: String = "",
@@ -10,5 +11,6 @@ data class User(
     val phoneNumber: String = "",
     val bvn: String = "",
     val photo: String? = null,
-    override val userId: String
-) : Entry
+    val pin: Int = -1,
+    override val userId: String = ""
+) : Entry, Serializable

@@ -118,12 +118,16 @@ object Extensions {
         layout: TextInputLayout,
         message: String? = null,
         minLength: Int? = null,
-        requiredLength: Int? = null
+        requiredLength: Int? = null,
+        isEmail: Boolean = false,
+        optional: Boolean = false,
     ): Boolean {
         return if (field.text.toString().trim().isEmpty()) {
-            field.error = message ?: getString(R.string.required_field)
-            field.requestFocus()
-            false
+            if (optional) true else {
+                field.error = message ?: getString(R.string.required_field)
+                field.requestFocus()
+                false
+            }
         } else if (minLength != null && field.text.toString().trim().length < minLength) {
             field.error = message ?: "Minimum length is $minLength"
             field.requestFocus()
@@ -132,6 +136,10 @@ object Extensions {
                 .trim().length != requiredLength
         ) {
             field.error = message ?: "Required length is $requiredLength"
+            field.requestFocus()
+            false
+        } else if (isEmail && !field.text.toString().trim().isAValidEmail()) {
+            field.error = "Invalid email address"
             field.requestFocus()
             false
         } else {

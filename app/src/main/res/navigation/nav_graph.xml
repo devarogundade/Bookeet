@@ -141,7 +141,13 @@
         android:id="@+id/profileSettingsFragment"
         android:name="team.pacify.bookeet.ui.settings.ProfileSettingsFragment"
         android:label="fragment_profile_settings"
-        tools:layout="@layout/fragment_profile_settings" />
+        tools:layout="@layout/fragment_profile_settings">
+        <argument
+            android:name="user"
+            android:defaultValue="@null"
+            app:argType="team.pacify.bookeet.data.models.person.User"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/reminderFragment"
         android:name="team.pacify.bookeet.ui.reminder.ReminderFragment"
