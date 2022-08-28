@@ -16,6 +16,7 @@
         android:padding="20dp">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/amountReceivedLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:boxBackgroundColor="@color/light_gray"
@@ -25,10 +26,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/amountReceived"
                 style="@style/TextStyle16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/amount_received"
+                android:inputType="number"
                 android:textColor="@color/text_title" />
 
         </com.google.android.material.textfield.TextInputLayout>

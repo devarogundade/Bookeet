@@ -1,11 +1,11 @@
 package team.pacify.bookeet.pager
 
-import team.pacify.bookeet.data.models.finance.Sale
+import team.pacify.bookeet.data.models.finance.Invoice
 
 interface PagerInterface {
     fun onClick()
 }
 
-interface ResultPagerInterface {
-    fun invoice(): Sale?
+interface InvoicePagerInterface {
+    fun invoice(): Invoice?
 }

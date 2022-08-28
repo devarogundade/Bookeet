@@ -16,6 +16,7 @@
         android:padding="20dp">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/invoiceIdLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:boxBackgroundColor="@color/light_gray"
@@ -25,6 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/invoiceId"
                 style="@style/TextStyle16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,32 +39,50 @@
             android:layout_width="match_parent"
             android:layout_height="30dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:boxBackgroundColor="@color/light_gray"
-            app:boxStrokeWidth="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/TextStyle16"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/invoiceDateLayout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
-                android:hint="@string/date"
-                android:imeOptions="actionNext"
-                android:text="25/08/2022"
-                android:textColor="@color/text_title" />
+                android:layout_weight="1"
+                app:boxBackgroundColor="@color/light_gray"
+                app:boxStrokeWidth="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/invoiceDate"
+                    style="@style/TextStyle16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="@string/date"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/text_title" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_calendar_month_24" />
+
+        </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
             android:layout_height="30dp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/customerNameLayout"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,6 +93,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <AutoCompleteTextView
+                android:id="@+id/customerName"
                 style="@style/TextStyle16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,37 +106,71 @@
             android:layout_width="match_parent"
             android:layout_height="30dp" />
 
-        <TextView
-            style="@style/TextStyle16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/item_name"
-            android:textColor="@color/text_title" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/input">
+            android:layout_height="50dp">
 
-            <EditText
-                android:id="@+id/editTextTextPersonName3"
-                style="@style/TextStyle16"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:autofillHints=""
-                android:background="@null"
-                android:gravity="center_vertical"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:paddingHorizontal="10dp"
-                android:textColor="@color/text_title"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/productNameLayout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor="@color/light_gray"
+                app:boxStrokeWidth="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout11"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/productName"
+                    style="@style/TextStyle16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/product_name"
+                    android:textColor="@color/text_title" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout11"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/productNameLayout">
+
+                <ImageView
+                    android:id="@+id/increment"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/primary_button_round_stroke"
+                    android:contentDescription="@string/app_name"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_add_24" />
+
+                <TextView
+                    android:id="@+id/quantity"
+                    style="@style/TextStyle16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:textColor="@color/text_title"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/decrement"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/primary_button_round_stroke"
+                    android:contentDescription="@string/app_name"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_horizontal_rule_24" />
+
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
@@ -123,6 +178,7 @@
             android:layout_height="30dp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@id/amountLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:boxBackgroundColor="@color/light_gray"
@@ -133,6 +189,7 @@
             app:startIconDrawable="@drawable/ic_naira">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/amount"
                 style="@style/TextStyle16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
