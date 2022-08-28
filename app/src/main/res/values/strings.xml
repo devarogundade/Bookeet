@@ -174,4 +174,7 @@
     <string name="you_have_no_requests">You have no requests</string>
     <string name="search_sales">Search sales</string>
     <string name="you_have_no_sales">You have no sales</string>
+    <string name="savings_bal">Savings bal</string>
+    <string name="ask_us_something">Ask us something</string>
+    <string name="hi_am_happy_to_assist_you">Hi, am happy to assist you!</string>
 </resources>

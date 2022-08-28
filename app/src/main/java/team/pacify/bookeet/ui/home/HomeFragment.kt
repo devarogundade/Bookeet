@@ -71,6 +71,9 @@ class HomeFragment : Fragment() {
                 root.closeDrawer(GravityCompat.START)
                 true
             }
+            transactions.setOnClickListener {
+                findNavController().navigate(R.id.action_mainFragment_to_transactionsFragment)
+            }
             allSales.setOnClickListener {
                 findNavController().navigate(R.id.action_mainFragment_to_salesFragment)
             }
@@ -79,6 +82,9 @@ class HomeFragment : Fragment() {
             }
             sendMoney.setOnClickListener {
                 findNavController().navigate(R.id.action_mainFragment_to_sendMoneyFragment)
+            }
+            accountDetails.setOnClickListener {
+
             }
         }
 
@@ -112,10 +118,9 @@ class HomeFragment : Fragment() {
                     binding.refresh.isRefreshing = false
 
                     if (resource.data == null || resource.data.isEmpty()) {
-                        return@observe
                     }
 
-                    salesAdapter.setSales(resource.data)
+                    salesAdapter.setSales(resource.data ?: emptyList())
                 }
             }
         }

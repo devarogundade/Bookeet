@@ -12,6 +12,7 @@ object DbConstants {
     const val SERVICES_PATH = "services"
     const val INVOICES_PATH = "invoices"
     const val SALES_PATH = "sales"
+    const val CHATS_PATH = "chats"
 }
 
 object UIConstants {

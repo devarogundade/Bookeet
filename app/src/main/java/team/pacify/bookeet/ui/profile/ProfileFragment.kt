@@ -47,6 +47,9 @@ class ProfileFragment : Fragment() {
         }
 
         binding.apply {
+            chatRep.setOnClickListener {
+                findNavController().navigate(R.id.action_mainFragment_to_chatFragment)
+            }
             profileSettings.setOnClickListener {
                 val action =
                     MainFragmentDirections.actionMainFragmentToProfileSettingsFragment(user)

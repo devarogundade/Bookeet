@@ -59,14 +59,15 @@ class SalesFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                 }
                 else -> {
+                    binding.progressBar.visibility = View.GONE
+
                     if (resource.data == null || resource.data.isEmpty()) {
                         binding.empty.visibility = View.VISIBLE
-                        return@observe
+                    } else {
+                        binding.empty.visibility = View.GONE
                     }
 
-                    binding.progressBar.visibility = View.GONE
-                    binding.empty.visibility = View.GONE
-                    salesAdapter.setSales(resource.data)
+                    salesAdapter.setSales(resource.data ?: emptyList())
                 }
             }
         }

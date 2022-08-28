@@ -9,6 +9,8 @@ import team.pacify.bookeet.data.dao.inventory.FirebaseProductDao
 import team.pacify.bookeet.data.dao.inventory.FirebaseServiceDao
 import team.pacify.bookeet.data.dao.inventory.ProductDao
 import team.pacify.bookeet.data.dao.inventory.ServiceDao
+import team.pacify.bookeet.data.dao.messaging.ChatDao
+import team.pacify.bookeet.data.dao.messaging.FirebaseChatDao
 import team.pacify.bookeet.data.dao.person.*
 
 @Module
@@ -41,5 +43,8 @@ abstract class DataModules {
 
     @Binds
     abstract fun userDao(userDao: FirebaseUserDao): UserDao
+
+    @Binds
+    abstract fun chatDao(chatDao: FirebaseChatDao): ChatDao
 
 }

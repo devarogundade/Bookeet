@@ -100,6 +100,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/transactionsFragment"
@@ -165,4 +172,9 @@
         android:name="team.pacify.bookeet.ui.sales.SalesFragment"
         android:label="fragment_sales"
         tools:layout="@layout/fragment_sales" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="team.pacify.bookeet.ui.messaging.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
 </navigation>

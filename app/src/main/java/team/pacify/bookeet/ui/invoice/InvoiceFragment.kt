@@ -70,11 +70,11 @@ class InvoiceFragment : Fragment() {
 
                     if (resource.data == null || resource.data.isEmpty()) {
                         binding.empty.visibility = View.VISIBLE
-                        return@observe
+                    } else {
+                        binding.empty.visibility = View.GONE
                     }
 
-                    binding.empty.visibility = View.GONE
-                    invoiceAdapter.setSales(resource.data)
+                    invoiceAdapter.setSales(resource.data ?: emptyList())
                 }
             }
         }
