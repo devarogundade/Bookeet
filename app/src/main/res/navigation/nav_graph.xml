@@ -93,6 +93,13 @@
             app:launchSingleTop="true"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainFragment_to_salesFragment"
+            app:destination="@id/salesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/transactionsFragment"
@@ -153,4 +160,9 @@
         android:name="team.pacify.bookeet.ui.reminder.ReminderFragment"
         android:label="fragment_reminder"
         tools:layout="@layout/fragment_reminder" />
+    <fragment
+        android:id="@+id/salesFragment"
+        android:name="team.pacify.bookeet.ui.sales.SalesFragment"
+        android:label="fragment_sales"
+        tools:layout="@layout/fragment_sales" />
 </navigation>

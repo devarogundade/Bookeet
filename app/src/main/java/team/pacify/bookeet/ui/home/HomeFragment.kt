@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
                 viewModel.getSales(firebaseAuth.currentUser?.uid ?: return@setOnRefreshListener)
             }
             viewAll.setOnClickListener {
-                findNavController().navigate(R.id.action_mainFragment_to_transactionsFragment)
+                findNavController().navigate(R.id.action_mainFragment_to_salesFragment)
             }
             sales.apply {
                 adapter = salesAdapter
@@ -70,6 +70,9 @@ class HomeFragment : Fragment() {
                 }
                 root.closeDrawer(GravityCompat.START)
                 true
+            }
+            allSales.setOnClickListener {
+                findNavController().navigate(R.id.action_mainFragment_to_salesFragment)
             }
             requestMoney.setOnClickListener {
                 findNavController().navigate(R.id.action_mainFragment_to_requestMoneyFragment)

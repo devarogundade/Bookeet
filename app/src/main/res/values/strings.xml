@@ -171,4 +171,7 @@
     <string name="recent_sales">Recent sales</string>
     <string name="paid">Paid</string>
     <string name="on_credit">On credit</string>
+    <string name="you_have_no_requests">You have no requests</string>
+    <string name="search_sales">Search sales</string>
+    <string name="you_have_no_sales">You have no sales</string>
 </resources>
