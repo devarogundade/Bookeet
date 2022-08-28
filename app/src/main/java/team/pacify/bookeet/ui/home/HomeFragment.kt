@@ -15,7 +15,9 @@ import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import team.pacify.bookeet.R
 import team.pacify.bookeet.adapters.SalesAdapter
+import team.pacify.bookeet.data.models.person.User
 import team.pacify.bookeet.databinding.FragmentHomeBinding
+import team.pacify.bookeet.ui.main.MainFragmentDirections
 import team.pacify.bookeet.utils.Extensions.toNaira
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
@@ -25,6 +27,8 @@ class HomeFragment : Fragment() {
 
     @Inject
     lateinit var firebaseAuth: FirebaseAuth
+
+    private var user: User? = null
 
     private lateinit var binding: FragmentHomeBinding
     private val salesAdapter = SalesAdapter()
@@ -65,7 +69,11 @@ class HomeFragment : Fragment() {
                     R.id.invoice -> findNavController().navigate(R.id.action_mainFragment_to_invoiceFragment)
                     R.id.bookKeeping -> findNavController().navigate(R.id.action_mainFragment_to_bookKeepingFragment)
                     R.id.reminder -> findNavController().navigate(R.id.action_mainFragment_to_reminderFragment)
-                    R.id.settings -> findNavController().navigate(R.id.action_mainFragment_to_profileSettingsFragment)
+                    R.id.settings -> {
+                        val action =
+                            MainFragmentDirections.actionMainFragmentToProfileSettingsFragment(user)
+                        findNavController().navigate(action)
+                    }
                     R.id.signOut -> signOut()
                 }
                 root.closeDrawer(GravityCompat.START)
@@ -89,6 +97,7 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.user.observe(viewLifecycleOwner) { user ->
+            this.user = user
             if (user != null) {
                 binding.apply {
                     welcome.text = if (user.name.contains(" ")) {

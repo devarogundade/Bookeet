@@ -50,6 +50,9 @@ class ProfileFragment : Fragment() {
             chatRep.setOnClickListener {
                 findNavController().navigate(R.id.action_mainFragment_to_chatFragment)
             }
+            reminder.setOnClickListener {
+                findNavController().navigate(R.id.action_mainFragment_to_reminderFragment)
+            }
             profileSettings.setOnClickListener {
                 val action =
                     MainFragmentDirections.actionMainFragmentToProfileSettingsFragment(user)
