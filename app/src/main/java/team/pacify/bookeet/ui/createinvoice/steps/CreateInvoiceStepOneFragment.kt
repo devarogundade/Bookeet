@@ -85,7 +85,10 @@ class CreateInvoiceStepOneFragment : InvoicePagerFragment() {
             invoiceDate.setText(SimpleDateFormat("dd/MM/yyyy").format(date))
 
             this.datePicker.setOnClickListener {
-                datePicker.show(childFragmentManager, "childFragmentManager")
+                try {
+                    datePicker.show(childFragmentManager, "childFragmentManager")
+                } catch (e: Exception) {
+                }
             }
         }
 
@@ -115,7 +118,7 @@ class CreateInvoiceStepOneFragment : InvoicePagerFragment() {
         if (!allInputValidated()) return null
 
         return Invoice(
-            id = binding.invoiceId.text.toString().trim(),
+            invoiceId = binding.invoiceId.text.toString().trim(),
             customerName = binding.customerName.text.toString().trim(),
             timeStamp = Calendar.getInstance().time,
             date = date,

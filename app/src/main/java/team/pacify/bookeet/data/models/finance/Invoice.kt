@@ -8,6 +8,7 @@ data class Invoice(
     @ServerTimestamp
     var timeStamp: Date? = null,
     override var id: String = "",
+    val invoiceId: String = "",
     override var userId: String = "",
     val name: String = "",
     val soldProductId: String = "",

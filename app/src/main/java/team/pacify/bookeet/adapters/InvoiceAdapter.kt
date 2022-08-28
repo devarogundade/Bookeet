@@ -56,7 +56,7 @@ class InvoiceAdapter : RecyclerView.Adapter<InvoiceAdapter.InvoiceViewHolder>() 
         fun bind(invoice: Invoice) {
             binding.apply {
                 customerName.text = invoice.customerName
-                invoiceId.text = "INV: ${invoice.id}"
+                invoiceId.text = "INV: ${invoice.invoiceId}"
                 price.text = invoice.amountReceived.toNaira()
             }
         }

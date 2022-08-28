@@ -169,4 +169,6 @@
     <string name="in_stock">In Stock</string>
     <string name="transactions">Transactions</string>
     <string name="recent_sales">Recent sales</string>
+    <string name="paid">Paid</string>
+    <string name="on_credit">On credit</string>
 </resources>

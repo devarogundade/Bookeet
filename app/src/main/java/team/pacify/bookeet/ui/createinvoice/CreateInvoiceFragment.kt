@@ -80,7 +80,7 @@ class CreateInvoiceFragment : Fragment() {
                 if (result != null) {
                     if (viewPager.currentItem == 0) {
                         invoice = invoice.copy(
-                            id = result.id,
+                            invoiceId = result.invoiceId,
                             date = result.date,
                             timeStamp = result.timeStamp,
                             customerName = result.customerName,
@@ -123,8 +123,8 @@ class CreateInvoiceFragment : Fragment() {
                 else -> {
                     progressDialog.dismiss()
                     MaterialAlertDialogBuilder(requireContext()).apply {
-                        setTitle("Product added!")
-                        setMessage("You have successfully added ${resource.data?.name} to your inventory")
+                        setTitle("Invoice created!")
+                        setMessage("You have successfully created a new invoice")
                         setNegativeButton("Close") { _, _ ->
                             findNavController().popBackStack()
                         }

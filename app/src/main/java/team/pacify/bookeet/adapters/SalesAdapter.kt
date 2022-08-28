@@ -10,6 +10,7 @@ import org.ocpsoft.prettytime.PrettyTime
 import team.pacify.bookeet.R
 import team.pacify.bookeet.data.models.finance.Sale
 import team.pacify.bookeet.databinding.SaleItemBinding
+import team.pacify.bookeet.utils.Extensions.toNaira
 
 class SalesAdapter : RecyclerView.Adapter<SalesAdapter.SalesViewHolder>() {
 
@@ -54,6 +55,8 @@ class SalesAdapter : RecyclerView.Adapter<SalesAdapter.SalesViewHolder>() {
 
         fun bind(sale: Sale) {
             binding.apply {
+                productName.text = sale.productName
+                price.text = sale.paid?.toNaira()
                 date.text = prettyTime.format(sale.soldOn)
             }
         }

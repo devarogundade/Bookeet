@@ -46,7 +46,9 @@ constructor(
                     productId = product.id,
                     timeStamp = Calendar.getInstance().time,
                     quantity = qty,
-                    customerId = null
+                    customerId = null,
+                    productName = product.name,
+                    paid = product.sellingPrice * qty
                 )
             )
         }
