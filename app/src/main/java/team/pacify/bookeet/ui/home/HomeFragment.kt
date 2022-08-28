@@ -1,5 +1,6 @@
 package team.pacify.bookeet.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import team.pacify.bookeet.R
 import team.pacify.bookeet.adapters.SalesAdapter
 import team.pacify.bookeet.databinding.FragmentHomeBinding
+import team.pacify.bookeet.utils.Extensions.toNaira
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
 
@@ -37,9 +39,11 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getUser(firebaseAuth.currentUser?.uid ?: return)
         viewModel.getSales(firebaseAuth.currentUser?.uid ?: return)
 
         binding.apply {
@@ -73,6 +77,23 @@ class HomeFragment : Fragment() {
             sendMoney.setOnClickListener {
                 findNavController().navigate(R.id.action_mainFragment_to_sendMoneyFragment)
             }
+        }
+
+        viewModel.user.observe(viewLifecycleOwner) { user ->
+            if (user != null) {
+                binding.apply {
+                    welcome.text = if (user.name.contains(" ")) {
+                        "Welcome back, ${user.name.split(" ").first()}"
+                    } else {
+                        "Welcome back, ${user.name}"
+                    }
+                    name.text = user.name
+                    balance.text = 0.0.toNaira()
+                }
+            } else {
+                binding.welcome.text = "Hi, welcome"
+            }
+
         }
 
         viewModel.sales.observe(viewLifecycleOwner) { resource ->

@@ -7,20 +7,33 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import team.pacify.bookeet.data.models.finance.Sale
+import team.pacify.bookeet.data.models.person.User
 import team.pacify.bookeet.domain.repository.finance.SalesRepository
+import team.pacify.bookeet.domain.repository.person.UserRepository
 import team.pacify.bookeet.utils.Resource
 import team.pacify.bookeet.utils.UIConstants
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel
-@Inject
-constructor(
-    private val salesRepository: SalesRepository
+@Inject constructor(
+    private val salesRepository: SalesRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val _sales = MutableLiveData<Resource<List<Sale>>>()
     val sales: LiveData<Resource<List<Sale>>> = _sales
+
+    private val _user = MutableLiveData<User?>()
+    val user: LiveData<User?> = _user
+
+    fun getUser(userId: String) {
+        viewModelScope.launch {
+            userRepository.getUser(userId).collect { resource ->
+                _user.postValue(resource.data)
+            }
+        }
+    }
 
     fun getSales(userId: String) {
         viewModelScope.launch {
