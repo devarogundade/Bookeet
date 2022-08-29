@@ -10,16 +10,13 @@ import team.pacify.bookeet.R
 import team.pacify.bookeet.data.models.messaging.Chat
 import team.pacify.bookeet.databinding.ReceiverBinding
 import team.pacify.bookeet.databinding.SenderBinding
-
-
-const val SENDER_VIEW_TYPE = 100
-const val RECEIVER_VIEW_TYPE = 101
+import team.pacify.bookeet.utils.UIConstants.RECEIVER_VIEW_TYPE
+import team.pacify.bookeet.utils.UIConstants.SENDER_VIEW_TYPE
 
 class ChatsAdapter(
     private val userId: String,
     private val onHold: (Chat) -> Unit
-) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {

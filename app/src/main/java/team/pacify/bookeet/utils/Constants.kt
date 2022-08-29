@@ -33,5 +33,7 @@ object UIConstants {
         "Dozen"
     )
     const val FIREBASE_LOAD_SIZE = 20L
+    const val SENDER_VIEW_TYPE = 100
+    const val RECEIVER_VIEW_TYPE = 101
 }
 
