@@ -138,4 +138,5 @@
     <string name="spend_save_transfer">Spend, save, transfer, receive, book keep your business cash flow.</string>
     <string name="create_account">Create account</string>
     <string name="book_keeping_inventory_banking_and_more">Start your book Keeping, inventory, banking and more.</string>
+    <string name="no_sales">No sales</string>
 </resources>

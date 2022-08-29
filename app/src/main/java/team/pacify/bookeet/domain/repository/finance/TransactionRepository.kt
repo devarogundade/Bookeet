@@ -12,7 +12,10 @@ class TransactionRepository @Inject constructor(
 ) {
 
     suspend fun syncTransaction(userId: String) {
-        dao.syncTransaction(userId)
+        try {
+            dao.syncTransaction(userId)
+        } catch (e: Exception) {
+        }
     }
 
     suspend fun transfer(transaction: Transaction) {

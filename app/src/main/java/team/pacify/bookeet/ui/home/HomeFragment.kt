@@ -46,13 +46,12 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getUser(firebaseAuth.currentUser?.uid ?: return)
+        viewModel.getSales(firebaseAuth.currentUser?.uid ?: return)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.getSales(firebaseAuth.currentUser?.uid ?: return)
 
         binding.apply {
             refresh.setOnRefreshListener {
@@ -131,6 +130,9 @@ class HomeFragment : Fragment() {
                     binding.refresh.isRefreshing = false
 
                     if (resource.data == null || resource.data.isEmpty()) {
+                        binding.empty.visibility = View.VISIBLE
+                    } else {
+                        binding.empty.visibility = View.GONE
                     }
 
                     salesAdapter.setSales(resource.data ?: emptyList())
