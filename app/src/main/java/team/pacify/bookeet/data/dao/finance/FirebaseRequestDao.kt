@@ -39,7 +39,7 @@ class FirebaseRequestDao @Inject constructor(
         return callbackFlow {
             val doc = fStore.collection(DbConstants.REQUESTS_PATH)
             doc.whereEqualTo("userId", userId)
-                .orderBy("timeStamp", Query.Direction.DESCENDING)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
                 .addSnapshotListener { value, error ->
                     if (error != null)
                         launch {
