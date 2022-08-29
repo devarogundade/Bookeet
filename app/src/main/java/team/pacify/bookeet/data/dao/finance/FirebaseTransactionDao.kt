@@ -42,13 +42,21 @@ class FirebaseTransactionDao @Inject constructor(
         val request = fsiClient.transactions(userId)
         val response = request.body()
         response?.data?.transactions?.forEach { transaction ->
-            addTransaction(
+            addOrRevokeTransaction(
                 transaction.copy(
                     userId = userId
                 )
             )
         }
         return response
+    }
+
+    private suspend fun addOrRevokeTransaction(transaction: Transaction) {
+        try {
+            getTransaction(transaction.id)
+        } catch (e: Exception) {
+            addTransaction(transaction)
+        }
     }
 
     override suspend fun addTransaction(transaction: Transaction): Transaction {
@@ -75,8 +83,7 @@ class FirebaseTransactionDao @Inject constructor(
     override suspend fun getTransaction(transactionId: String): Transaction {
         val doc = fStore.collection(DbConstants.TRANSACTIONS_PATH)
             .document(transactionId).get().await()
-        val transaction = doc.toObject<Transaction>()
-        return transaction ?: throw Exception("No transaction found with ID")
+        return doc.toObject() ?: throw Exception("No invoice found with ID")
     }
 
     override suspend fun getAllTransactions(

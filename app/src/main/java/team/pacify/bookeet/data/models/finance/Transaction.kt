@@ -21,6 +21,7 @@ data class Transaction(
     val status: String? = null,
     @SerializedName("transaction_type")
     val type: String? = null,
+    @SerializedName("unique_reference")
     override var id: String = "",
     override var userId: String = "",
 ) : Entry
