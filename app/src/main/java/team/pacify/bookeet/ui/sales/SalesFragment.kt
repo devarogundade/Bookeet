@@ -41,7 +41,7 @@ class SalesFragment : Fragment() {
         viewModel.getSales(firebaseAuth.currentUser?.uid ?: return)
 
         binding.apply {
-            materialToolbar2.setNavigationOnClickListener {
+            materialToolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
             sales.apply {

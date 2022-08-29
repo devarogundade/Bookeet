@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/materialToolbar2"
+        android:id="@+id/material_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:backgroundTint="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar2"
+        app:layout_constraintTop_toBottomOf="@+id/material_toolbar"
         app:tabMode="auto"
         app:tabTextAppearance="@style/TabTextAppearance" />
 
@@ -60,6 +60,6 @@
         android:background="@color/light_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar2" />
+        app:layout_constraintTop_toBottomOf="@+id/material_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

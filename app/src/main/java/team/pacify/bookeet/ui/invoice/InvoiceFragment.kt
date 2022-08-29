@@ -41,7 +41,7 @@ class InvoiceFragment : Fragment() {
         viewModel.getInvoices(firebaseAuth.currentUser?.uid ?: return)
 
         binding.apply {
-            materialToolbar2.setNavigationOnClickListener {
+            materialToolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
 

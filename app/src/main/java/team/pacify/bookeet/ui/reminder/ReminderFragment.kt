@@ -33,7 +33,7 @@ class ReminderFragment : Fragment() {
         viewModel.getReminders()
 
         binding.apply {
-            materialToolbar2.setNavigationOnClickListener {
+            materialToolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
 

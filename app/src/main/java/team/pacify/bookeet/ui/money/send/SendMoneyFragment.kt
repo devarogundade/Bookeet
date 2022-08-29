@@ -1,5 +1,6 @@
 package team.pacify.bookeet.ui.money.send
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,12 +13,24 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 import team.pacify.bookeet.R
+import team.pacify.bookeet.data.models.finance.Transaction
 import team.pacify.bookeet.databinding.FragmentSendMoneyBinding
+import team.pacify.bookeet.utils.Extensions.toNaira
 import team.pacify.bookeet.utils.Extensions.validateInput
-import team.pacify.bookeet.utils.UIConstants.ItemUnits
+import team.pacify.bookeet.utils.Resource
+import java.util.*
+import javax.inject.Inject
+import kotlin.random.Random
+import kotlin.random.nextInt
 
+@AndroidEntryPoint
 class SendMoneyFragment : Fragment() {
+
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
 
     private val viewModel: SendMoneyViewModel by viewModels()
     private lateinit var binding: FragmentSendMoneyBinding
@@ -25,6 +38,8 @@ class SendMoneyFragment : Fragment() {
     private var isAmount = false
     private var isBank = false
     private var isAccountNumber = false
+
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +56,7 @@ class SendMoneyFragment : Fragment() {
         setUpValidators()
 
         binding.apply {
-            materialToolbar2.setNavigationOnClickListener {
+            materialToolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
 
@@ -50,11 +65,38 @@ class SendMoneyFragment : Fragment() {
             }
         }
 
+        progressDialog = ProgressDialog(requireContext()).apply {
+            setTitle("Sending money")
+            setCancelable(false)
+        }
+
+        viewModel.sending.observe(viewLifecycleOwner) { resource ->
+            when (resource) {
+                is Resource.Loading -> {
+                    progressDialog.show()
+                }
+                is Resource.Error -> {
+                    progressDialog.dismiss()
+                    Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    progressDialog.dismiss()
+                    MaterialAlertDialogBuilder(requireContext()).apply {
+                        setTitle("Money sent")
+                        setMessage("You have successfully sent ${resource.data?.amount?.toNaira()} to ${resource?.data?.accountName}")
+                        setNegativeButton("Close") { _, _ ->
+                            findNavController().popBackStack()
+                        }
+                    }.show()
+                }
+            }
+        }
+
         viewModel.banks.observe(viewLifecycleOwner) { banks ->
             val banksAdapter = ArrayAdapter(
                 requireContext(),
                 R.layout.item_autocomplete_layout,
-                ItemUnits
+                banks.map { it.name }
             )
             binding.banks.setAdapter(banksAdapter)
         }
@@ -63,21 +105,31 @@ class SendMoneyFragment : Fragment() {
 
     private fun promptConfirmation() {
         if (allInputsValidated()) {
+
+            val user = "Demo User ${Random.nextInt(1..100)}"
+            val amount = binding.amount.text.toString().trim().toDouble()
+
             MaterialAlertDialogBuilder(requireContext()).apply {
                 setTitle("Confirm transaction")
-                setMessage("You are about to send an irreversible transaction to ROSE MIKES - ₦ 4,000.00")
+                setMessage("You are about to send an irreversible transaction to $user - ${amount.toNaira()}")
                 setNegativeButton("Cancel", null)
                 setPositiveButton("Confirm") { _, _ ->
-                    sendMoney()
+                    viewModel.sendMoney(
+                        Transaction(
+                            timeStamp = Calendar.getInstance().time,
+                            userId = firebaseAuth.currentUser?.uid ?: return@setPositiveButton,
+                            accountNumber = binding.accountNumber.text.toString().trim(),
+                            amount = amount,
+                            status = "pending",
+                            type = "TRANSFER",
+                            accountName = user
+                        )
+                    )
                 }
             }.show()
         } else {
             Toast.makeText(requireContext(), "Fill all required fields", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun sendMoney() {
-
     }
 
     private fun setUpValidators() {

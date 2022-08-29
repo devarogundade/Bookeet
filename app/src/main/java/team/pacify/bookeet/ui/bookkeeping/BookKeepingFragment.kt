@@ -39,7 +39,7 @@ class BookKeepingFragment : Fragment() {
         )
 
         binding.apply {
-            materialToolbar2.setNavigationOnClickListener {
+            materialToolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
 

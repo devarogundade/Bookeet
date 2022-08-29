@@ -58,7 +58,7 @@ class CreateInvoiceFragment : Fragment() {
         )
 
         binding.apply {
-            materialToolbar2.setNavigationOnClickListener {
+            materialToolbar.setNavigationOnClickListener {
                 if (viewPager.currentItem > 0) viewPager.currentItem--
                 else findNavController().popBackStack()
             }

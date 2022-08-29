@@ -15,6 +15,10 @@ class TransactionRepository @Inject constructor(
         dao.syncTransaction(userId)
     }
 
+    suspend fun transfer(transaction: Transaction) {
+        dao.transfer(transaction)
+    }
+
     suspend fun addTransaction(transaction: Transaction): Resource<Transaction> {
         return try {
             return Resource.Success(dao.addTransaction(transaction))

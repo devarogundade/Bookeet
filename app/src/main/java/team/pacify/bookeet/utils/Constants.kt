@@ -1,5 +1,7 @@
 package team.pacify.bookeet.utils
 
+import team.pacify.bookeet.data.models.finance.Bank
+
 object DbConstants {
     const val ENTRIES_PATH: String = "entries"
     const val TRANSACTIONS_PATH: String = "transactions"
@@ -36,6 +38,54 @@ object UIConstants {
         "Kg",
         "Litre",
         "Dozen"
+    )
+    val Banks = listOf(
+        Bank(
+            "",
+            "Sterling",
+            "",
+            "1234"
+        ), Bank(
+            "",
+            "Zenith",
+            "",
+            "1234"
+        ), Bank(
+            "",
+            "GTBank",
+            "",
+            "1234"
+        ), Bank(
+            "",
+            "United Bank of Africa",
+            "",
+            "1234"
+        ), Bank(
+            "",
+            "FCMB",
+            "",
+            "1234"
+        ), Bank(
+            "",
+            "First Bank of Nigeria",
+            "",
+            "1234"
+        ), Bank(
+            "",
+            "Access Bank",
+            "",
+            "1234"
+        ), Bank(
+            "",
+            "Sparkle Bank",
+            "",
+            "1234"
+        ), Bank(
+            "",
+            "KudaMFB",
+            "",
+            "1234"
+        )
     )
     const val FIREBASE_LOAD_SIZE = 20L
     const val SENDER_VIEW_TYPE = 100
