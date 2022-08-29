@@ -52,4 +52,7 @@ abstract class DataModules {
     @Binds
     abstract fun storageDao(storageDao: FirebaseStorageDao): StorageDao
 
+    @Binds
+    abstract fun requestDao(requestDao: FirebaseRequestDao): RequestDao
+
 }

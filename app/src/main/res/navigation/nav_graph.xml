@@ -145,7 +145,15 @@
         android:id="@+id/requestMoneyFragment"
         android:name="team.pacify.bookeet.ui.money.request.RequestMoneyFragment"
         android:label="fragment_request_money"
-        tools:layout="@layout/fragment_request_money" />
+        tools:layout="@layout/fragment_request_money">
+        <action
+            android:id="@+id/action_requestMoneyFragment_to_createRequestFragment"
+            app:destination="@id/createRequestFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/sendMoneyFragment"
         android:name="team.pacify.bookeet.ui.money.send.SendMoneyFragment"
@@ -177,4 +185,9 @@
         android:name="team.pacify.bookeet.ui.messaging.ChatFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/createRequestFragment"
+        android:name="team.pacify.bookeet.ui.money.request.create.CreateRequestFragment"
+        android:label="fragment_create_request"
+        tools:layout="@layout/fragment_create_request" />
 </navigation>

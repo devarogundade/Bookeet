@@ -6,11 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import org.ocpsoft.prettytime.PrettyTime
 import team.pacify.bookeet.R
-import team.pacify.bookeet.data.models.finance.Sale
+import team.pacify.bookeet.data.models.finance.Request
 import team.pacify.bookeet.databinding.RequestItemBinding
+import team.pacify.bookeet.utils.Extensions.toNaira
 
-class RequestAdapter : RecyclerView.Adapter<RequestAdapter.RequestViewHolder>() {
+class RequestAdapter(
+    private val remind: (Request) -> Unit
+) : RecyclerView.Adapter<RequestAdapter.RequestViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestViewHolder {
         return RequestViewHolder(
@@ -25,17 +29,17 @@ class RequestAdapter : RecyclerView.Adapter<RequestAdapter.RequestViewHolder>() 
 
     override fun getItemCount(): Int = diffResult.currentList.size
 
-    private val diffUtil = object : DiffUtil.ItemCallback<Sale>() {
+    private val diffUtil = object : DiffUtil.ItemCallback<Request>() {
         override fun areItemsTheSame(
-            oldItem: Sale,
-            newItem: Sale
+            oldItem: Request,
+            newItem: Request
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: Sale,
-            newItem: Sale
+            oldItem: Request,
+            newItem: Request
         ): Boolean {
             return oldItem == newItem
         }
@@ -43,15 +47,23 @@ class RequestAdapter : RecyclerView.Adapter<RequestAdapter.RequestViewHolder>() 
 
     private val diffResult = AsyncListDiffer(this, diffUtil)
 
-    fun setSales(sales: List<Sale>) {
-        diffResult.submitList(sales)
+    fun setSales(requests: List<Request>) {
+        diffResult.submitList(requests)
     }
 
     inner class RequestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val prettyTime = PrettyTime()
         val binding = RequestItemBinding.bind(itemView)
 
-        fun bind(sale: Sale) {
+        fun bind(request: Request) {
             binding.apply {
+                icon.text = request.customerName
+                customerName.text = request.customerName
+                date.text = prettyTime.format(request.timestamp)
+                amount.text = request.amount.toNaira()
+                remind.setOnClickListener {
+                    remind(request)
+                }
             }
         }
     }

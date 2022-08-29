@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar2" />
 
     <LinearLayout
-        android:id="@+id/linearLayout6"
+        android:id="@+id/requestMoney"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
@@ -88,9 +88,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout6"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout6"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+        app:layout_constraintEnd_toEndOf="@+id/requestMoney"
+        app:layout_constraintStart_toStartOf="@+id/requestMoney"
+        app:layout_constraintTop_toBottomOf="@+id/requestMoney">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -106,13 +106,13 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/requestsCount"
                 style="@style/TextStyle14"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:background="@drawable/primary_button_round"
                 android:gravity="center"
-                android:text="5"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
