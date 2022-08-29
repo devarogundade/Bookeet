@@ -178,4 +178,7 @@
     <string name="ask_us_something">Ask us something</string>
     <string name="hi_am_happy_to_assist_you">Hi, am happy to assist you!</string>
     <string name="you_have_no_transactions">You have no transactions</string>
+    <string name="create_a_virtual_account">Create a virtual account</string>
+    <string name="spend_save_transfer_receive_bookkeep_your_business_cashflow">Spend, save, transfer, receive, bookkeep your business cashflow.</string>
+    <string name="create_account">Create account</string>
 </resources>

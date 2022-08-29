@@ -9,6 +9,8 @@ import team.pacify.bookeet.utils.Resource
 interface TransactionDao {
     suspend fun syncTransaction(userId: String): FsiResponse<FsiPager<Transaction>>?
 
+    suspend fun transfer(transaction: Transaction): FsiResponse<Transaction>?
+
     suspend fun addTransaction(transaction: Transaction): Transaction
 
     suspend fun deleteTransaction(transaction: Transaction)

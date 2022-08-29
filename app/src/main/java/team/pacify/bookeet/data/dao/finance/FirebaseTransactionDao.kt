@@ -22,19 +22,14 @@ class FirebaseTransactionDao @Inject constructor(
     private val fStore: FirebaseFirestore,
     private val fsiClient: FsiClient
 ) : TransactionDao {
-    private val rootPath: String = "transaction"
 
-    suspend fun transfer(
-        userId: String,
-        bankCode: String,
-        bankAccount: Int,
-        amount: Double
-    ): FsiResponse<Transaction>? {
+    override suspend fun transfer(transaction: Transaction): FsiResponse<Transaction>? {
+        addTransaction(transaction)
         return fsiClient.transfer(
-            userId = userId,
-            bankCode = bankCode,
-            bankAccount = bankAccount,
-            amount = amount
+            userId = transaction.userId,
+            bankCode = transaction.bankCode,
+            accountNumber = transaction.accountNumber,
+            amount = transaction.amount
         ).body()
     }
 
@@ -55,7 +50,7 @@ class FirebaseTransactionDao @Inject constructor(
         try {
             getTransaction(transaction.id)
         } catch (e: Exception) {
-            addTransaction(transaction)
+            updateTransaction(transaction)
         }
     }
 

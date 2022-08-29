@@ -92,7 +92,7 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_mainFragment_to_sendMoneyFragment)
             }
             accountDetails.setOnClickListener {
-
+                findNavController().navigate(R.id.action_mainFragment_to_accountFragment)
             }
         }
 

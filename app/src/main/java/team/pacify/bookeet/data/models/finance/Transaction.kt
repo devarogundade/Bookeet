@@ -10,7 +10,7 @@ data class Transaction(
     var timeStamp: Date? = null,
     val narration: String = "",
     @SerializedName("nuban")
-    val accountNumber: Long = -1,
+    val accountNumber: String = "",
     @SerializedName("account_name")
     val accountName: String = "",
     @SerializedName("bank_code")

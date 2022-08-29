@@ -41,6 +41,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getUser(firebaseAuth.currentUser?.uid ?: return)
+        viewModel.getAccount(firebaseAuth.currentUser?.uid ?: return)
 
         unsetProfile = UnsetProfile(binding.unsetProfile) {
             findNavController().navigate(R.id.action_mainFragment_to_profileSettingsFragment)
@@ -59,6 +60,13 @@ class ProfileFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
+
+        viewModel.account.observe(viewLifecycleOwner) { resource ->
+            binding.apply {
+                accountNumber.text = resource.data?.accNo ?: "Create your bank account"
+            }
+        }
+
 
         viewModel.user.observe(viewLifecycleOwner) { resource ->
             user = resource.data
@@ -86,7 +94,6 @@ class ProfileFragment : Fragment() {
                     val user = resource.data
                     binding.apply {
                         name.text = user.name
-                        accountNumber.text = user.accountNumber.toString()
                     }
                 }
             }

@@ -107,6 +107,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_accountFragment"
+            app:destination="@id/accountFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/transactionsFragment"
@@ -190,4 +197,9 @@
         android:name="team.pacify.bookeet.ui.money.request.create.CreateRequestFragment"
         android:label="fragment_create_request"
         tools:layout="@layout/fragment_create_request" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="team.pacify.bookeet.ui.account.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
 </navigation>

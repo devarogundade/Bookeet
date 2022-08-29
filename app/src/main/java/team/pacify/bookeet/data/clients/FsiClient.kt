@@ -30,7 +30,7 @@ interface FsiClient {
     suspend fun transfer(
         @Query("user_id") userId: String,
         @Query("bank_code") bankCode: String,
-        @Query("bank_account") bankAccount: Int,
+        @Query("bank_account") accountNumber: String,
         @Query("amount") amount: Double
     ): Response<FsiResponse<Transaction>>
 

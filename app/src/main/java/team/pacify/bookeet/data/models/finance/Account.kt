@@ -2,6 +2,7 @@ package team.pacify.bookeet.data.models.finance
 
 import com.google.gson.annotations.SerializedName
 import team.pacify.bookeet.data.models.Entry
+import java.util.*
 
 data class Account(
     override var id: String = "",
@@ -13,7 +14,7 @@ data class Account(
     var bankName: String? = null,
     @SerializedName("bank_code")
     val bankCode: String? = null,
-    var createdAt: String = "",
+    var timeStamp: Date = Calendar.getInstance().time,
     val bvn: String? = null,
     val currency: String? = null
 ) : Entry

@@ -1,4 +1,4 @@
-package team.pacify.bookeet.ui.profile
+package team.pacify.bookeet.ui.account
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,8 +14,7 @@ import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel
-@Inject constructor(
+class AccountViewModel @Inject constructor(
     private val accountRepository: AccountRepository,
     private val userRepository: UserRepository
 ) : ViewModel() {
@@ -26,9 +25,11 @@ class ProfileViewModel
     private val _user = MutableLiveData<Resource<User?>>()
     val user: LiveData<Resource<User?>> = _user
 
+    val creating = MutableLiveData(false)
+
     fun getUser(userId: String) {
         viewModelScope.launch {
-            _user.postValue(Resource.Loading())
+            _account.postValue(Resource.Loading())
             userRepository.getUser(userId).collect { resource ->
                 _user.postValue(resource)
             }
@@ -43,5 +44,14 @@ class ProfileViewModel
             }
         }
     }
+
+    fun createAccount(userId: String) {
+        viewModelScope.launch {
+            creating.postValue(true)
+            accountRepository.createAccount(userId)
+            creating.postValue(false)
+        }
+    }
+
 
 }

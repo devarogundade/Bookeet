@@ -4,7 +4,6 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +53,7 @@ class ProfileSettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getAccount(firebaseAuth.currentUser?.uid ?: return)
         setUpValidators()
         fillFields(user)
 
@@ -90,6 +90,10 @@ class ProfileSettingsFragment : Fragment() {
             setCancelable(false)
         }
 
+        viewModel.account.observe(viewLifecycleOwner) { resource ->
+            binding.accountNumber.setText(resource.data?.accNo ?: "")
+        }
+
         viewModel.user.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Loading -> progressDialog.show()
@@ -113,13 +117,11 @@ class ProfileSettingsFragment : Fragment() {
     }
 
     private fun fillFields(user: User?) {
-        Log.d("TAG", "fillFields: $user")
         binding.phoneNumber.setText(firebaseAuth.currentUser?.phoneNumber?.replace("+234", ""))
 
         if (user != null) {
             binding.apply {
                 accountName.setText(user.name)
-                accountNumber.setText(user.accountNumber.toString())
                 email.setText(user.emailAddress)
                 if (user.pin > 999) {
                     pin.setText(user.pin.toString())
