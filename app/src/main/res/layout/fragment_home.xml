@@ -378,7 +378,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:contentDescription="@string/app_name"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_outline_account_circle_24"
+                        app:tint="@color/gray" />
 
                 </androidx.cardview.widget.CardView>
 

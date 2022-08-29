@@ -16,4 +16,5 @@
     <color name="amber">#C64D0A</color>
     <color name="amber_deep">#6B0404</color>
     <color name="red">#DA0808</color>
+    <color name="gray">#CCCCCC</color>
 </resources>

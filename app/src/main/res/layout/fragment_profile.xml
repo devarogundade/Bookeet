@@ -37,6 +37,8 @@
                 <ImageView
                     android:id="@+id/photo"
                     android:layout_width="match_parent"
+                    android:src="@drawable/ic_outline_account_circle_24"
+                    app:tint="@color/gray"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerCrop" />

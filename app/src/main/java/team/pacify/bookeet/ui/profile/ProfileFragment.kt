@@ -59,6 +59,9 @@ class ProfileFragment : Fragment() {
                     MainFragmentDirections.actionMainFragmentToProfileSettingsFragment(user)
                 findNavController().navigate(action)
             }
+            accountNumber.setOnClickListener {
+                findNavController().navigate(R.id.action_mainFragment_to_accountFragment)
+            }
         }
 
         viewModel.account.observe(viewLifecycleOwner) { resource ->
