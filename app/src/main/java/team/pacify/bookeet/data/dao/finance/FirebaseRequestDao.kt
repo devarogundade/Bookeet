@@ -1,6 +1,7 @@
 package team.pacify.bookeet.data.dao.finance
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObjects
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
@@ -38,6 +39,7 @@ class FirebaseRequestDao @Inject constructor(
         return callbackFlow {
             val doc = fStore.collection(DbConstants.REQUESTS_PATH)
             doc.whereEqualTo("userId", userId)
+                .orderBy("timeStamp", Query.Direction.DESCENDING)
                 .addSnapshotListener { value, error ->
                     if (error != null)
                         launch {
