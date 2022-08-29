@@ -43,11 +43,15 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getUser(firebaseAuth.currentUser?.uid ?: return)
+    }
+
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getUser(firebaseAuth.currentUser?.uid ?: return)
         viewModel.getSales(firebaseAuth.currentUser?.uid ?: return)
 
         binding.apply {
@@ -112,7 +116,6 @@ class HomeFragment : Fragment() {
                 binding.welcome.text = "Hi, welcome"
                 binding.balance.text = 0.0.toNaira()
             }
-
         }
 
         viewModel.sales.observe(viewLifecycleOwner) { resource ->

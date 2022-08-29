@@ -39,6 +39,7 @@ class FirebaseTransactionDao @Inject constructor(
         response?.data?.transactions?.forEach { transaction ->
             addOrRevokeTransaction(
                 transaction.copy(
+                    id = transaction.id + userId,
                     userId = userId
                 )
             )
