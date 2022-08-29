@@ -6,21 +6,28 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import team.pacify.bookeet.data.models.finance.Sale
+import team.pacify.bookeet.data.models.util.Reminder
 import team.pacify.bookeet.utils.Resource
 
 class ReminderViewModel : ViewModel() {
 
-    private val _reminders = MutableLiveData<Resource<List<Sale>>>()
-    val reminders: LiveData<Resource<List<Sale>>> = _reminders
+    private val _reminders = MutableLiveData<Resource<List<Reminder>>>()
+    val reminders: LiveData<Resource<List<Reminder>>> = _reminders
 
     fun getReminders() {
         viewModelScope.launch {
             _reminders.postValue(Resource.Loading())
-            delay(1000)
+            delay(400)
             _reminders.postValue(
                 Resource.Success(
-                    emptyList()
+                    listOf(
+                        Reminder(
+                            1,
+                            "Send money to Chisom",
+                            false,
+                            60
+                        )
+                    )
                 )
             )
         }

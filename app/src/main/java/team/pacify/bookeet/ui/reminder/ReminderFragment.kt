@@ -50,22 +50,22 @@ class ReminderFragment : Fragment() {
             when (resource) {
                 is Resource.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
-                    binding.empty.visibility = View.GONE
                 }
                 is Resource.Error -> {
                     binding.progressBar.visibility = View.GONE
-                    binding.empty.visibility = View.GONE
-
                     Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT)
                         .show()
                 }
                 else -> {
+                    binding.progressBar.visibility = View.GONE
+
                     if (resource.data == null || resource.data.isEmpty()) {
                         binding.empty.visibility = View.VISIBLE
-                        return@observe
+                    } else {
+                        binding.empty.visibility = View.GONE
                     }
-                    remindersAdapter.setSales(resource.data)
-                    binding.progressBar.visibility = View.GONE
+
+                    remindersAdapter.setSales(resource.data ?: emptyList())
                 }
             }
         }

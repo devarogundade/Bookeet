@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import org.ocpsoft.prettytime.PrettyTime
 import team.pacify.bookeet.R
-import team.pacify.bookeet.data.models.finance.Sale
+import team.pacify.bookeet.data.models.util.Reminder
 import team.pacify.bookeet.databinding.ReminderItemBinding
 
 class RemindersAdapter(
-    private val onReminderDelete: (Sale) -> Unit,
-    private val onReminderEdit: (Sale) -> Unit,
+    private val onReminderDelete: (Reminder) -> Unit,
+    private val onReminderEdit: (Reminder) -> Unit,
 ) :
     RecyclerView.Adapter<RemindersAdapter.RemindersViewHolder>() {
 
@@ -30,17 +30,17 @@ class RemindersAdapter(
 
     override fun getItemCount(): Int = diffResult.currentList.size
 
-    private val diffUtil = object : DiffUtil.ItemCallback<Sale>() {
+    private val diffUtil = object : DiffUtil.ItemCallback<Reminder>() {
         override fun areItemsTheSame(
-            oldItem: Sale,
-            newItem: Sale
+            oldItem: Reminder,
+            newItem: Reminder
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: Sale,
-            newItem: Sale
+            oldItem: Reminder,
+            newItem: Reminder
         ): Boolean {
             return oldItem == newItem
         }
@@ -48,7 +48,7 @@ class RemindersAdapter(
 
     private val diffResult = AsyncListDiffer(this, diffUtil)
 
-    fun setSales(sales: List<Sale>) {
+    fun setSales(sales: List<Reminder>) {
         diffResult.submitList(sales)
     }
 
@@ -56,10 +56,10 @@ class RemindersAdapter(
         private val prettyTime = PrettyTime()
         val binding = ReminderItemBinding.bind(itemView)
 
-        fun bind(sale: Sale) {
+        fun bind(reminder: Reminder) {
             binding.apply {
-                delete.setOnClickListener { onReminderDelete(sale) }
-                edit.setOnClickListener { onReminderEdit(sale) }
+                delete.setOnClickListener { onReminderDelete(reminder) }
+                edit.setOnClickListener { onReminderEdit(reminder) }
             }
         }
     }
