@@ -7,11 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 import team.pacify.bookeet.adapters.TransactionsAdapter
 import team.pacify.bookeet.databinding.FragmentTransactionsBinding
 import team.pacify.bookeet.utils.Resource
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class TransactionsFragment : Fragment() {
+
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var binding: FragmentTransactionsBinding
     private val transactionsAdapter = TransactionsAdapter()
@@ -26,13 +33,10 @@ class TransactionsFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getTransactions()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.getTransactions(firebaseAuth.currentUser?.uid ?: return)
 
         binding.apply {
             transactions.apply {
@@ -44,19 +48,20 @@ class TransactionsFragment : Fragment() {
         viewModel.transactions.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Loading -> {
-                    binding.progressBar3.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Resource.Error -> {
-                    binding.progressBar3.visibility = View.GONE
+                    binding.progressBar.visibility = View.GONE
                 }
                 else -> {
                     if (resource.data == null || resource.data.isEmpty()) {
-
-                        return@observe
+                        binding.empty.visibility = View.VISIBLE
+                    } else {
+                        binding.empty.visibility = View.GONE
                     }
 
-                    transactionsAdapter.setTransactions(resource.data)
-                    binding.progressBar3.visibility = View.GONE
+                    transactionsAdapter.setTransactions(resource.data ?: emptyList())
+                    binding.progressBar.visibility = View.GONE
                 }
             }
         }

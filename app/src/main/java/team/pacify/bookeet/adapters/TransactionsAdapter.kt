@@ -1,17 +1,16 @@
 package team.pacify.bookeet.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.ocpsoft.prettytime.PrettyTime
 import team.pacify.bookeet.R
-import team.pacify.bookeet.data.models.finance.Sale
+import team.pacify.bookeet.data.models.finance.Transaction
 import team.pacify.bookeet.databinding.TransactionItemBinding
-import java.text.SimpleDateFormat
+import team.pacify.bookeet.utils.Extensions.toNaira
 
 class TransactionsAdapter : RecyclerView.Adapter<TransactionsAdapter.TransactionsViewHolder>() {
 
@@ -28,17 +27,17 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsAdapter.Transaction
 
     override fun getItemCount(): Int = diffResult.currentList.size
 
-    private val diffUtil = object : DiffUtil.ItemCallback<List<Sale>>() {
+    private val diffUtil = object : DiffUtil.ItemCallback<Transaction>() {
         override fun areItemsTheSame(
-            oldItem: List<Sale>,
-            newItem: List<Sale>
+            oldItem: Transaction,
+            newItem: Transaction
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: List<Sale>,
-            newItem: List<Sale>
+            oldItem: Transaction,
+            newItem: Transaction
         ): Boolean {
             return oldItem == newItem
         }
@@ -46,26 +45,20 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsAdapter.Transaction
 
     private val diffResult = AsyncListDiffer(this, diffUtil)
 
-    fun setTransactions(transactions: List<List<Sale>>) {
+    fun setTransactions(transactions: List<Transaction>) {
         diffResult.submitList(transactions)
     }
 
     inner class TransactionsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+        private val prettyTime = PrettyTime()
         val binding = TransactionItemBinding.bind(itemView)
-        private val salesAdapter = SalesAdapter()
 
-        @SuppressLint("SimpleDateFormat")
-        fun bind(sales: List<Sale>) {
+        fun bind(transaction: Transaction) {
             binding.apply {
-                date.text = SimpleDateFormat("dd MM yyyy").format(sales[0].soldOn)
-                this.sales.apply {
-                    adapter = salesAdapter
-                    layoutManager = LinearLayoutManager(itemView.context)
-                }
+                productName.text = transaction.narration
+                price.text = transaction.priceAfter.toNaira()
+                date.text = prettyTime.format(transaction.timeStamp)
             }
-
-            salesAdapter.setSales(sales)
         }
     }
 
