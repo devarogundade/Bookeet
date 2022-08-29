@@ -19,6 +19,12 @@ class TransactionViewModel @Inject constructor(
     private val _transactions = MutableLiveData<Resource<List<Transaction>>>()
     val transactions: LiveData<Resource<List<Transaction>>> = _transactions
 
+    fun syncTransactions(userId: String) {
+        viewModelScope.launch {
+            transactionRepository.syncTransaction(userId)
+        }
+    }
+
     fun getTransactions(userId: String) {
         viewModelScope.launch {
             _transactions.postValue(Resource.Loading())

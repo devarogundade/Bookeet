@@ -10,31 +10,62 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import team.pacify.bookeet.data.clients.FsiClient
 import team.pacify.bookeet.data.models.finance.Transaction
+import team.pacify.bookeet.data.responses.FsiPager
+import team.pacify.bookeet.data.responses.FsiResponse
 import team.pacify.bookeet.utils.DbConstants
 import team.pacify.bookeet.utils.Resource
 import javax.inject.Inject
 
 class FirebaseTransactionDao @Inject constructor(
     private val fStore: FirebaseFirestore,
+    private val fsiClient: FsiClient
 ) : TransactionDao {
     private val rootPath: String = "transaction"
 
+    suspend fun transfer(
+        userId: String,
+        bankCode: String,
+        bankAccount: Int,
+        amount: Double
+    ): FsiResponse<Transaction>? {
+        return fsiClient.transfer(
+            userId = userId,
+            bankCode = bankCode,
+            bankAccount = bankAccount,
+            amount = amount
+        ).body()
+    }
+
+    override suspend fun syncTransaction(userId: String): FsiResponse<FsiPager<Transaction>>? {
+        val request = fsiClient.transactions(userId)
+        val response = request.body()
+        response?.data?.transactions?.forEach { transaction ->
+            addTransaction(
+                transaction.copy(
+                    userId = userId
+                )
+            )
+        }
+        return response
+    }
+
     override suspend fun addTransaction(transaction: Transaction): Transaction {
-        val ref = fStore.collection(rootPath).document()
+        val ref = fStore.collection(DbConstants.TRANSACTIONS_PATH).document()
         transaction.id = ref.id
         ref.set(transaction).await()
         return transaction
     }
 
     override suspend fun deleteTransaction(transaction: Transaction) {
-        fStore.collection(rootPath)
+        fStore.collection(DbConstants.TRANSACTIONS_PATH)
             .document(transaction.id)
             .delete().await()
     }
 
     override suspend fun updateTransaction(transaction: Transaction): Transaction {
-        fStore.collection(rootPath)
+        fStore.collection(DbConstants.TRANSACTIONS_PATH)
             .document(transaction.id)
             .set(transaction)
             .await()
@@ -42,7 +73,7 @@ class FirebaseTransactionDao @Inject constructor(
     }
 
     override suspend fun getTransaction(transactionId: String): Transaction {
-        val doc = fStore.collection(rootPath)
+        val doc = fStore.collection(DbConstants.TRANSACTIONS_PATH)
             .document(transactionId).get().await()
         val transaction = doc.toObject<Transaction>()
         return transaction ?: throw Exception("No transaction found with ID")

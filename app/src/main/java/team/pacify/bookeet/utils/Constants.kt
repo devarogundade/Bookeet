@@ -16,6 +16,11 @@ object DbConstants {
     const val REQUESTS_PATH = "requests"
 }
 
+object FSIConstants {
+    const val FSI_BASE_URL = "https://bookeet.herokuapp.com/api/"
+    const val CONN_TIMEOUT = 60L
+}
+
 object UIConstants {
     const val MIN_ITEM_IN_STORE = 0
     const val MAX_ITEM_IN_STORE = 99999999

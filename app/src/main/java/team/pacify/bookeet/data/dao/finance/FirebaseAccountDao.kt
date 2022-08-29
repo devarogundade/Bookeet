@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import team.pacify.bookeet.data.clients.FsiClient
 import team.pacify.bookeet.data.models.finance.Account
 import team.pacify.bookeet.utils.DbConstants
 import team.pacify.bookeet.utils.Resource
@@ -16,9 +17,11 @@ import javax.inject.Inject
 
 class FirebaseAccountDao @Inject constructor(
     private val fStore: FirebaseFirestore,
+    private val fsiClient: FsiClient,
 ) : AccountDao {
 
     override suspend fun addAccount(account: Account): Account {
+        fsiClient.createVirtualAccount(account.userId)
         val ref = fStore.collection(DbConstants.ACCOUNTS_PATH).document()
         account.id = ref.id
         ref.set(account).await()

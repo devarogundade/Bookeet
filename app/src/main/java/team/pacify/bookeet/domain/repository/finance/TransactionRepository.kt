@@ -10,6 +10,11 @@ import javax.inject.Inject
 class TransactionRepository @Inject constructor(
     private val dao: TransactionDao
 ) {
+
+    suspend fun syncTransaction(userId: String) {
+        dao.syncTransaction(userId)
+    }
+
     suspend fun addTransaction(transaction: Transaction): Resource<Transaction> {
         return try {
             return Resource.Success(dao.addTransaction(transaction))

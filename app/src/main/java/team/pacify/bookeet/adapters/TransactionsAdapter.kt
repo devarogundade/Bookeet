@@ -56,7 +56,7 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsAdapter.Transaction
         fun bind(transaction: Transaction) {
             binding.apply {
                 productName.text = transaction.narration
-                price.text = transaction.priceAfter.toNaira()
+                price.text = transaction.amount.toNaira()
                 date.text = prettyTime.format(transaction.timeStamp)
             }
         }

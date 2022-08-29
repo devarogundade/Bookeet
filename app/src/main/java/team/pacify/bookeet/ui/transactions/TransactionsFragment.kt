@@ -36,6 +36,7 @@ class TransactionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.syncTransactions(firebaseAuth.currentUser?.uid ?: return)
         viewModel.getTransactions(firebaseAuth.currentUser?.uid ?: return)
 
         binding.apply {
