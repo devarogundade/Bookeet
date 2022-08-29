@@ -11,5 +11,5 @@ data class Request(
     val amount: Double = 0.0,
     val narration: String? = null,
     @ServerTimestamp
-    val timestamp: Date = Calendar.getInstance().time
+    val timeStamp: Date = Calendar.getInstance().time
 )

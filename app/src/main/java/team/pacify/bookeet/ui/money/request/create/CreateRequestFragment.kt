@@ -62,7 +62,7 @@ class CreateRequestFragment : Fragment() {
                             userId = firebaseAuth.currentUser?.uid ?: return@setOnClickListener,
                             customerName = binding.customerName.text.toString().trim(),
                             amount = binding.amount.text.toString().toDouble(),
-                            timestamp = Calendar.getInstance().time
+                            timeStamp = Calendar.getInstance().time
                         )
                     )
                 } else {
