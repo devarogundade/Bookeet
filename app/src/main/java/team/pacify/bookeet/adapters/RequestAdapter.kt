@@ -59,11 +59,9 @@ class RequestAdapter(
             binding.apply {
                 icon.text = request.customerName
                 customerName.text = request.customerName
-                date.text = prettyTime.format(request.timestamp)
+                date.text = prettyTime.format(request.timeStamp)
                 amount.text = request.amount.toNaira()
-                remind.setOnClickListener {
-                    remind(request)
-                }
+                remind.setOnClickListener { remind(request) }
             }
         }
     }
